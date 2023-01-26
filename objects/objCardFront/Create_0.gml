@@ -22,9 +22,7 @@ enum AC {
 	VeryFast = 3
 }
 
-customCurve = InitDynamicCurves(AC.Slow);
+customCurve = InitDynamicCurves(AC.Fast);
 
 //Assign self to a player's deck
 objPlayer.AddToHand(sprite_index, myValue);
-
-cards = ds_list_create();

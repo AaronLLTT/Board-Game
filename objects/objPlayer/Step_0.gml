@@ -1,6 +1,6 @@
 /// @description Selecting a card
 
-if (collision_point_list(mouse_x, mouse_y, objCardFront, false, false, cards, false)) {
+if (collision_point_list(mouse_x, mouse_y, objCardFront, false, false, cards, true) > 0) {
 	var selectedCard = 0;
 	cards[| selectedCard].beingSelected = true;
 	for (var i = 1; i < ds_list_size(cards); ++i) {
@@ -12,8 +12,3 @@ if (collision_point_list(mouse_x, mouse_y, objCardFront, false, false, cards, fa
 	}
 	ds_list_clear(cards);
 }
-
-
-
-
-

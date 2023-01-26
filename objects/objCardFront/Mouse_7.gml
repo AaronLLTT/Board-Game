@@ -5,4 +5,5 @@ if (beingPlayed && place_meeting(x, y, objCardSlot) == false) {
 	ModifyCurvePointsForMovement(customCurve, ["x", "y"], handX, handY);
 	movingToHand = true;
 	beingPlayed = false;
+	beingSelected = false;
 }

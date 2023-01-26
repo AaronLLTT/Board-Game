@@ -68,7 +68,7 @@ function ModifyCurvePointsForMovement(curve, channels, endX, endY) {
 
 function ApplyCurve(curve, channel) {
 	//Start moving along the curve
-	if (curveTimer == undefined && curvePos < 1) {
+	if (curveTimer == undefined && !curveFinished) {
 		curveTimer = time_source_create(time_source_game, curveTicker, time_source_units_seconds, id.IncreaseCurvePos, [], -1);
 		time_source_start(curveTimer);
 	}
@@ -108,11 +108,15 @@ function InitDynamicCurves(animSpeed) {
 		
 		//Check if we are done with the timer
 		if ((curvePos >= 1 / curveSpeed) && curveSpeed != AC.Slow) {
+			time_source_stop(curveTimer);
 			time_source_destroy(curveTimer);
 			curveTimer = undefined;
 			curveFinished = true;
 		}
 		else if (curveSpeed == AC.Slow && curveSpeed >= 1) {
+			time_source_stop(curveTimer);
+			time_source_destroy(curveTimer);
+			curveTimer = undefined;
 			curveFinished = true;
 		}
 	}
