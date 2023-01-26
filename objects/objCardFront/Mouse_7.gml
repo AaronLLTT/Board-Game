@@ -8,6 +8,7 @@ if (beingPlayed && place_meeting(mouse_x, mouse_y, objCardSlot) == false) {
 	beingPlayed = false;
 	beingSelected = false;
 }
+//Prevent cards being played on top of each other
 else if (beingPlayed && place_meeting(mouse_x, mouse_y, objCardSlot) == true && instance_nearest(mouse_x, mouse_y, objCardSlot).taken == true) {
 	customCurve = CreateCustomCurveFromCurve(acCardMove, ["x", "y"]);
 	ModifyCurvePointsForMovement(customCurve, ["x", "y"], handX, handY);

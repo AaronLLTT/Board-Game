@@ -133,6 +133,7 @@
     {"id":{"name":"sprCardClubs","path":"sprites/sprCardClubs/sprCardClubs.yy",},"order":3,},
     {"id":{"name":"__shd_scribble","path":"shaders/__shd_scribble/__shd_scribble.yy",},"order":0,},
     {"id":{"name":"objDie","path":"objects/objDie/objDie.yy",},"order":0,},
+    {"id":{"name":"fntNames","path":"fonts/fntNames/fntNames.yy",},"order":0,},
     {"id":{"name":"scribble_font_combine","path":"scripts/scribble_font_combine/scribble_font_combine.yy",},"order":5,},
     {"id":{"name":"scribble_font_get_glyph_ranges","path":"scripts/scribble_font_get_glyph_ranges/scribble_font_get_glyph_ranges.yy",},"order":10,},
     {"id":{"name":"scribble_anim_shake","path":"scripts/scribble_anim_shake/scribble_anim_shake.yy",},"order":6,},
