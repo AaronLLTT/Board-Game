@@ -53,14 +53,24 @@ function ModifyCurvePointsForMovement(curve, channels, endX, endY) {
 	for (var i = 1; i < array_length(yCurveChannel); ++i) {
 		yCurveChannel[i].value = y + (totalChange * yCurveChannel[i].value);
 	};
+	
+	//Modify for speed
+	if (curveSpeed != 0.5) {
+		for (var i = 0; i < array_length(xCurveChannel); ++i) {
+			xCurveChannel[i].posx /= curveSpeed;
+		}
+	
+		for (var i = 0; i < array_length(yCurveChannel); ++i) {
+			yCurveChannel[i].posx /= curveSpeed;
+		}
+	}
 }
 
 function ApplyCurve(curve, channel) {
 	//Start moving along the curve
 	if (curveTimer == undefined && curvePos < 1) {
-		curveTimer = time_source_create(time_source_game, curveSpeed, time_source_units_seconds, id.IncreaseCurvePos, [], -1);
+		curveTimer = time_source_create(time_source_game, curveTicker, time_source_units_seconds, id.IncreaseCurvePos, [], -1);
 		time_source_start(curveTimer);
-		show_debug_message("stgarting timer");
 	}
 	
 	//Get values
@@ -77,20 +87,33 @@ function ApplyCurve(curve, channel) {
 function InitDynamicCurves(animSpeed) {
 	//Init the variables the object needs to move
 	curvePos = 0;
-	curveSpeed = animSpeed;
+	if (animSpeed == 0) {
+		curveSpeed = 0.5;
+	}
+	else {
+		curveSpeed = animSpeed;
+	}
 	curveFinished = false;
 	curveTimer = undefined;
+	if (animSpeed == AC.Slow) {
+		curveTicker = 0.01;
+	}
+	else {
+		curveTicker = 0.02;
+	}
 	
 	//Create a method function so we can pass it in the timer
 	IncreaseCurvePos = function() {
-		curvePos += curveSpeed;
+		curvePos += curveTicker;
 		
 		//Check if we are done with the timer
-		if (curvePos >= 1) {
-			for (var i = 0; i < array_length(curveTimer); ++i) {
-				time_source_destroy(curveTimer);
-			}
+		if ((curvePos >= 1 / curveSpeed) && curveSpeed != AC.Slow) {
+			time_source_destroy(curveTimer);
 			curveTimer = undefined;
+			curveFinished = true;
+		}
+		else if (curveSpeed == AC.Slow && curveSpeed >= 1) {
+			curveFinished = true;
 		}
 	}
 	

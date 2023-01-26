@@ -4,7 +4,7 @@ if (movingToHand) {
 	x = ApplyCurve(customCurve, "x");
 	y = ApplyCurve(customCurve, "y");
 	
-	if (curvePos >= 1) {
+	if (curveFinished) {
 		movingToHand = false;
 		animcurve_destroy(customCurve);
 		inHand = true;
