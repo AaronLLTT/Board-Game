@@ -1,7 +1,7 @@
 {
   "resourceType": "GMAnimCurve",
   "resourceVersion": "1.2",
-  "name": "acTest",
+  "name": "acCardMove",
   "function": 2,
   "channels": [
     {"resourceType":"GMAnimCurveChannel","resourceVersion":"1.0","name":"x","colour":4278190271,"visible":true,"points":[

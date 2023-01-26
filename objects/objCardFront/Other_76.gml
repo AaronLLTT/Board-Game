@@ -5,7 +5,7 @@ if (event_data[? "event_type"] == "sequence event") {
 	{
 		case "MoveToPlayersHand":
 			if (!in_sequence && customCurve == undefined) {
-				customCurve = CreateCustomCurveFromCurve(acTest, ["x", "y"]);
+				customCurve = CreateCustomCurveFromCurve(acCardMove, ["x", "y"]);
 				ModifyCurvePointsForMovement(customCurve, ["x", "y"], handX, handY);
 				
 				movingToHand = true;

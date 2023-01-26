@@ -1,5 +1,6 @@
 /// @description Selecting a card
 
+//Select only the card that's on the top and highlighted
 if (collision_point_list(mouse_x, mouse_y, objCardFront, false, false, cards, true) > 0) {
 	var selectedCard = 0;
 	cards[| selectedCard].beingSelected = true;

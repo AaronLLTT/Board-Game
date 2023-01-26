@@ -9,7 +9,7 @@ function CreateCustomCurveFromCurve(animCurve, channels) {
 	//Create a custom curve based on the points in the original curve
 	var customCurve = animcurve_create();
 	//Create the correct amount of arrays
-	var tempChannels = array_create(array_length(channels) - 1);
+	var tempChannels = array_create(array_length(channels));
 	//Set the info for those channels
 	for(var i = 0; i < array_length(channels); ++i) {
 		tempChannels[i] = animcurve_channel_new();
@@ -122,5 +122,51 @@ function InitDynamicCurves(animSpeed) {
 	}
 	
 	//Return undefined so the variable used with this function is named by the object
+	return undefined;
+}
+
+function ModifyCurvePointsForScale(curve, channels, endXScale, endYScale) {
+	//Set the first point to where we are now
+	//Find the correct channel
+	var xScaleChannel = GetChannelNumber(curve, channels[0]);
+	
+	curve.channels[xScaleChannel].points[0].value = image_xscale;
+	var totalChange = endXScale - image_xscale;
+	var xCurveChannel = animcurve_get_channel(curve, channels[0]).points;
+	for (var i = 1; i < array_length(xCurveChannel); ++i) {
+		//Multiply the percent from the values, against the difference between the start and end point
+		xCurveChannel[i].value = image_xscale + (totalChange * xCurveChannel[i].value);
+	}
+
+	var yScaleChannel = GetChannelNumber(curve, channels[1]);
+	//Alter the first point to where we're starting
+	curve.channels[yScaleChannel].points[0].value = image_yscale;
+	totalChange = endYScale - image_yscale;
+	var yCurveChannel = animcurve_get_channel(curve, channels[1]).points;
+	for (var i = 1; i < array_length(yCurveChannel); ++i) {
+		yCurveChannel[i].value = image_yscale + (totalChange * yCurveChannel[i].value);
+	};
+	
+	//Modify for speed
+	if (curveSpeed != 0.5) {
+		for (var i = 0; i < array_length(xCurveChannel); ++i) {
+			xCurveChannel[i].posx /= curveSpeed;
+		}
+	
+		for (var i = 0; i < array_length(yCurveChannel); ++i) {
+			yCurveChannel[i].posx /= curveSpeed;
+		}
+	}
+}
+
+//Find the correct number for a channel in a curve
+function GetChannelNumber(curve, channelName) {
+	var channelNumber = 0;
+	for (var i = 0; i < array_length(curve.channels); ++i) {
+		if (curve.channels[i].name == channelName) {
+			channelNumber = i;
+			return channelNumber;
+		}
+	}
 	return undefined;
 }
