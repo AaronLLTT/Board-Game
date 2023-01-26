@@ -8,6 +8,8 @@ if (movingToHand) {
 		movingToHand = false;
 		animcurve_destroy(customCurve);
 		curveFinished = false;
+		handX = x;
+		handY = y;
 	}
 }
 

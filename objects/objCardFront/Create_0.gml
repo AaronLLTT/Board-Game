@@ -12,9 +12,6 @@ beingSelected = false; //Whether to show an outline or not
 goingToSlot = false; //Moving from dragged around to put into a slot
 onField = false
 
-handX = 750 - (75 * array_length(objPlayer.myHand));
-handY = 675;
-
 enum AC {
 	Slow = 0,
 	Normal = 1,
@@ -23,9 +20,6 @@ enum AC {
 }
 
 customCurve = InitDynamicCurves(AC.Fast);
-
-//Assign self to a player's deck
-objPlayer.AddToHand(sprite_index, myValue, id);
 
 MoveTo = function(newX, newY) {
 	customCurve = CreateCustomCurveFromCurve(acCardMove, ["x", "y"]);

@@ -1,9 +1,9 @@
 /// @description Player Data
 
 myPortrait = sprPlayerFemale;
-handStartX = 750;
-handStartY = 675;
-cardSpacing = 75;
+global.HandStartX = 950;
+global.HandStartY = 675;
+global.HandSpacing = 50;
 
 CreateDeck = function(size) {
 	var deck = [];
@@ -36,10 +36,10 @@ RemoveFromHand = function(cardID) {
 OrganizeHand = function() {
 	for (var i = 0; i < array_length(myHand); ++i) {
 		if (i == 0) {
-			myHand[i].myID.MoveTo(handStartX, handStartY);
+			myHand[i].myID.MoveTo(global.HandStartX, global.HandStartY);
 		}
 		else {
-			myHand[i].myID.MoveTo(handStartX - (75 * i), handStartY);
+			myHand[i].myID.MoveTo(global.HandStartX - (global.HandSpacing * i), global.HandStartY);
 		}
 	}
 }
