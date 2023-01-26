@@ -3,8 +3,8 @@
   "resourceVersion": "1.0",
   "name": "objCardBack",
   "spriteId": {
-    "name": "sprCardBack",
-    "path": "sprites/sprCardBack/sprCardBack.yy",
+    "name": "sprCardDeckStackTop",
+    "path": "sprites/sprCardDeckStackTop/sprCardDeckStackTop.yy",
   },
   "solid": false,
   "visible": true,
