@@ -24,4 +24,5 @@ if (rollTimer < maxRollTime) { //If there's still time left, change face again
 else { //If we're done, show the results of the final roll
 	finalFace = selectedFace + 1;
 	rollTimer = 10;
+	objGamePiece.SetGoal(finalFace);
 }

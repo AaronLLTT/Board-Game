@@ -1,3 +1,4 @@
 /// @description Roll Again
-
-alarm[0] = rollTimer / rollSpeed;
+if (alarm[0] <= 0) {
+	alarm[0] = rollTimer / rollSpeed;
+}
