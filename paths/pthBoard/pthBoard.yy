@@ -2,9 +2,12 @@
   "resourceType": "GMPath",
   "resourceVersion": "1.0",
   "name": "pthBoard",
-  "kind": 0,
-  "precision": 4,
   "closed": false,
+  "kind": 0,
+  "parent": {
+    "name": "Paths",
+    "path": "folders/Paths.yy",
+  },
   "points": [
     {"speed":100.0,"x":284.97397,"y":118.000885,},
     {"speed":100.0,"x":372.72113,"y":108.532486,},
@@ -37,8 +40,5 @@
     {"speed":100.0,"x":937.15497,"y":506.37833,},
     {"speed":100.0,"x":1048.3237,"y":511.03406,},
   ],
-  "parent": {
-    "name": "Paths",
-    "path": "folders/Paths.yy",
-  },
+  "precision": 4,
 }

@@ -2,19 +2,18 @@
   "resourceType": "GMAnimCurve",
   "resourceVersion": "1.2",
   "name": "acCardPlayedDown",
-  "function": 2,
   "channels": [
-    {"resourceType":"GMAnimCurveChannel","resourceVersion":"1.0","name":"x","colour":4290799884,"visible":true,"points":[
+    {"resourceType":"GMAnimCurveChannel","resourceVersion":"1.0","name":"x","colour":4290799884,"points":[
         {"th0":-0.1,"th1":8.942246E-10,"tv0":0.0,"tv1":0.0,"x":0.0,"y":0.0,},
         {"th0":-0.1434046,"th1":0.19228226,"tv0":0.0,"tv1":0.0,"x":0.25,"y":1.0,},
         {"th0":-0.28662968,"th1":0.1,"tv0":0.0,"tv1":0.0,"x":1.0,"y":1.0,},
-      ],},
-    {"resourceType":"GMAnimCurveChannel","resourceVersion":"1.0","name":"y","colour":4281083598,"visible":true,"points":[
+      ],"visible":true,},
+    {"resourceType":"GMAnimCurveChannel","resourceVersion":"1.0","name":"y","colour":4281083598,"points":[
         {"th0":-0.1,"th1":0.02478653,"tv0":0.0,"tv1":0.0,"x":0.0,"y":0.0,},
         {"th0":-0.089766905,"th1":0.27123243,"tv0":0.0,"tv1":0.0,"x":0.25,"y":1.0,},
         {"th0":-0.07521349,"th1":0.1,"tv0":0.0,"tv1":0.0,"x":1.0,"y":1.0,},
-      ],},
-    {"resourceType":"GMAnimCurveChannel","resourceVersion":"1.0","name":"x_scale","colour":4290799884,"visible":true,"points":[
+      ],"visible":true,},
+    {"resourceType":"GMAnimCurveChannel","resourceVersion":"1.0","name":"x_scale","colour":4290799884,"points":[
         {"th0":0.0,"th1":0.05333334,"tv0":0.0,"tv1":0.0,"x":0.0,"y":1.5,},
         {"th0":-0.05333334,"th1":0.0,"tv0":0.0,"tv1":1.2753299E-07,"x":0.26666668,"y":-3.255,},
         {"th0":-0.042666685,"th1":0.037333332,"tv0":0.00066777144,"tv1":-0.00025743246,"x":0.35893333,"y":-1.021,},
@@ -25,8 +24,8 @@
         {"th0":-0.03194517,"th1":0.022733033,"tv0":0.008721471,"tv1":-0.0062013865,"x":0.86995775,"y":1.5848926,},
         {"th0":-0.02065909,"th1":0.02675265,"tv0":0.07070017,"tv1":-0.09151733,"x":0.93625337,"y":1.242321,},
         {"th0":-0.01400131,"th1":0.0,"tv0":0.0,"tv1":0.0,"x":1.0,"y":1.25,},
-      ],},
-    {"resourceType":"GMAnimCurveChannel","resourceVersion":"1.0","name":"y_scale","colour":4281083598,"visible":true,"points":[
+      ],"visible":true,},
+    {"resourceType":"GMAnimCurveChannel","resourceVersion":"1.0","name":"y_scale","colour":4281083598,"points":[
         {"th0":0.0,"th1":0.05333334,"tv0":0.0,"tv1":0.0,"x":0.0,"y":-1.5,},
         {"th0":-0.05333334,"th1":0.0,"tv0":0.0,"tv1":1.2753299E-07,"x":0.26666668,"y":-3.255,},
         {"th0":-0.042666685,"th1":0.037333332,"tv0":0.00066777144,"tv1":-0.00025743246,"x":0.35893333,"y":-1.021,},
@@ -37,8 +36,9 @@
         {"th0":-0.032723963,"th1":0.022004783,"tv0":0.008909464,"tv1":-0.005986452,"x":0.8709327,"y":1.561791,},
         {"th0":-0.02013439,"th1":0.027207255,"tv0":0.06392336,"tv1":-0.08627164,"x":0.9352785,"y":1.2332824,},
         {"th0":-0.014081001,"th1":0.0,"tv0":0.0,"tv1":0.0,"x":1.0,"y":1.25,},
-      ],},
+      ],"visible":true,},
   ],
+  "function": 2,
   "parent": {
     "name": "Animation Curves",
     "path": "folders/Animation Curves.yy",
