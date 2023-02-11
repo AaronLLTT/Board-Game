@@ -14,8 +14,8 @@
   "managed": true,
   "overriddenProperties": [],
   "parent": {
-    "name": "Objects",
-    "path": "folders/Objects.yy",
+    "name": "Everything Else",
+    "path": "folders/Objects/Everything Else.yy",
   },
   "parentObjectId": null,
   "persistent": false,
@@ -33,10 +33,7 @@
   "physicsStartAwake": true,
   "properties": [],
   "solid": false,
-  "spriteId": {
-    "name": "sprCardClubs",
-    "path": "sprites/sprCardClubs/sprCardClubs.yy",
-  },
+  "spriteId": null,
   "spriteMaskId": null,
   "visible": true,
 }

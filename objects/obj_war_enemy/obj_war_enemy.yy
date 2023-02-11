@@ -1,15 +1,15 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "objCardBack",
+  "name": "obj_war_enemy",
   "eventList": [
-    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":4,"eventType":6,"isDnD":false,},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,},
   ],
   "managed": true,
   "overriddenProperties": [],
   "parent": {
-    "name": "Everything Else",
-    "path": "folders/Objects/Everything Else.yy",
+    "name": "War",
+    "path": "folders/Objects/War.yy",
   },
   "parentObjectId": null,
   "persistent": false,
@@ -28,8 +28,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "sprCardDeckStackTop",
-    "path": "sprites/sprCardDeckStackTop/sprCardDeckStackTop.yy",
+    "name": "sprPlayerFemale",
+    "path": "sprites/sprPlayerFemale/sprPlayerFemale.yy",
   },
   "spriteMaskId": null,
   "visible": true,

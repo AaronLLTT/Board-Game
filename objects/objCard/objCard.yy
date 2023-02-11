@@ -1,15 +1,16 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "objCardBack",
+  "name": "objCard",
   "eventList": [
-    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":4,"eventType":6,"isDnD":false,},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":2,"isDnD":false,},
   ],
   "managed": true,
   "overriddenProperties": [],
   "parent": {
-    "name": "Everything Else",
-    "path": "folders/Objects/Everything Else.yy",
+    "name": "War",
+    "path": "folders/Objects/War.yy",
   },
   "parentObjectId": null,
   "persistent": false,
@@ -28,8 +29,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "sprCardDeckStackTop",
-    "path": "sprites/sprCardDeckStackTop/sprCardDeckStackTop.yy",
+    "name": "sprCards",
+    "path": "sprites/sprCards/sprCards.yy",
   },
   "spriteMaskId": null,
   "visible": true,
