@@ -14,6 +14,7 @@ for(var _i = 0; _i < _cards; ++_i) {
 //Shuffle the array
 full_deck = array_shuffle(full_deck);
 
+full_deck = array_create(52, 5); //TESTING ONLY
 //Give each player half of the deck
 with(objDeck) {
 	if (owner == obj_war_enemy) {
