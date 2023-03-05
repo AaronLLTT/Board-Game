@@ -5,7 +5,7 @@ if (owner == obj_war_player && active) {
 	var _player_card = instance_nearest(room_width / 2, room_height / 1.5, objCard);
 	var _enemy_card = instance_nearest(room_width / 2, room_height / 3, objCard);
 	
-	//Won the war
+	//The player won the war
 	if (_player_card.value > _enemy_card.value) {
 		//Move to the player's discard
 		with(_player_card) {
@@ -20,7 +20,7 @@ if (owner == obj_war_player && active) {
 			active = false;
 		}
 	}
-	//Lost the war
+	//The player lost the way
 	else if (_player_card.value < _enemy_card.value) {
 		//Move to the enemy discard
 		with(_player_card) {
@@ -37,10 +37,9 @@ if (owner == obj_war_player && active) {
 	}
 	//Tied
 	else {
-		//Go to war
-		layer_sequence_create("Instances", room_width / 2, room_height / 2, seqWar);
+		//Go to war again
+		layer_sequence_create("War", room_width / 2, room_height / 2 + (10 * instance_number(objCard)), seqWar);
 	}
 	
 	//layer_sequence_create("Instances", room_width / 2, room_height / 2, seqExplosion);
 }
-

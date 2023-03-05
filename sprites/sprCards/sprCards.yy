@@ -76,8 +76,8 @@
   "nineSlice": null,
   "origin": 4,
   "parent": {
-    "name": "Cards",
-    "path": "folders/Sprites/Cards.yy",
+    "name": "Simple War",
+    "path": "folders/Simple War.yy",
   },
   "preMultiplyAlpha": false,
   "sequence": {

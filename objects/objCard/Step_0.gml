@@ -9,3 +9,6 @@ if (!active) {
 		speed = 0;
 	}
 }
+
+//Sort by its depth
+depth = -y;
