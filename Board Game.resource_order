@@ -25,6 +25,7 @@
     {"name":"Scripts","order":4,"path":"folders/Scripts.yy",},
     {"name":"Sequences","order":10,"path":"folders/Sequences.yy",},
     {"name":"Shaders","order":5,"path":"folders/Shaders.yy",},
+    {"name":"Simple War","order":15,"path":"folders/Simple War.yy",},
     {"name":"Sounds","order":2,"path":"folders/Sounds.yy",},
     {"name":"Board","order":13,"path":"folders/Sprites/Board.yy",},
     {"name":"Cards","order":11,"path":"folders/Sprites/Cards.yy",},
@@ -45,7 +46,6 @@
     {"name":"Players","order":12,"path":"folders/Sprites/Players.yy",},
     {"name":"Tile Sets","order":1,"path":"folders/Tile Sets.yy",},
     {"name":"Timelines","order":7,"path":"folders/Timelines.yy",},
-    {"name":"Simple War","order":15,"path":"folders/Simple War.yy",},
   ],
   "ResourceOrderSettings": [
     {"name":"spr_rock_medium_2","order":1,"path":"sprites/spr_rock_medium_2/spr_rock_medium_2.yy",},
@@ -105,6 +105,7 @@
     {"name":"spr_incidental_scroll","order":4,"path":"sprites/spr_incidental_scroll/spr_incidental_scroll.yy",},
     {"name":"__scribble_class_page","order":5,"path":"scripts/__scribble_class_page/__scribble_class_page.yy",},
     {"name":"scribble_external_sound_exists","order":2,"path":"scripts/scribble_external_sound_exists/scribble_external_sound_exists.yy",},
+    {"name":"obj_player_parent","order":10,"path":"objects/obj_player_parent/obj_player_parent.yy",},
     {"name":"scribble_kerning_pair_get","order":18,"path":"scripts/scribble_kerning_pair_get/scribble_kerning_pair_get.yy",},
     {"name":"sprDie5","order":4,"path":"sprites/sprDie5/sprDie5.yy",},
     {"name":"spr_rock_group_2","order":1,"path":"sprites/spr_rock_group_2/spr_rock_group_2.yy",},

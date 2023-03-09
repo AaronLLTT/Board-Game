@@ -4,7 +4,7 @@
 var _full_deck = [];
 
 //Get the amount of cards we'll use in our deck
-var _cards = sprite_get_number(sprCards) - 40; //THIS 40 IS FOR MAKING THE DECK SHORTER FOR TESTING
+var _cards = sprite_get_number(sprCards) - 42; //THIS 40 IS FOR MAKING THE DECK SHORTER FOR TESTING
 
 //Fill up the deck array with numbers
 for(var _i = 0; _i < _cards; ++_i) {
@@ -24,7 +24,7 @@ with (obj_computer) {
 	array_copy(deck, 0, _full_deck, array_length(_full_deck) / 2, array_length(_full_deck));
 }
 
-ready_for_war = false;
+cards_in_war = 0;
 player_card = undefined;
 computer_card = undefined;
 can_draw = true;
