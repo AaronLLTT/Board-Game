@@ -1,8 +1,8 @@
 /// @description Compare Cards 
 
 if (cards_in_war mod 2 == 0 && cards_in_war != 0) {
-	//Compare the cards
 	var _winner = undefined;
+	
 	//The player wins!
 	if (player_card.value > computer_card.value) {
 		_winner = obj_player;
@@ -11,9 +11,9 @@ if (cards_in_war mod 2 == 0 && cards_in_war != 0) {
 	else if (player_card.value < computer_card.value) {
 		_winner = obj_computer;
 	}
-	//Tie! It's time for war
+	//They tie
 	else {
-		
+		in_war = true;
 	}
 	
 	if (_winner != undefined) {
@@ -50,7 +50,7 @@ if (array_length(obj_player.deck) == 0 and can_draw) {
 }
 if (array_length(obj_computer.deck) == 0 and can_draw) {
 	//The player loses
-	instance_destroy(obj_player_parent);
+	//instance_destroy(obj_player_parent);
 	//Play sequence showing lose and try again
-	//game_restart();
+	game_restart();
 }

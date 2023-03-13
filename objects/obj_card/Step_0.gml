@@ -8,6 +8,10 @@ y = lerp(y, goal_y, 0.1);
 if (point_distance(x, y, goal_x, goal_y) < 3) {
 	x = goal_x;
 	y = goal_y;
+	
+	if (global.WAR) {
+		obj_war_general.check_war_status();
+	}
 }
 
 //When first created, the card is in the war state
