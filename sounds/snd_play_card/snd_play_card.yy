@@ -13,7 +13,7 @@
   "duration": 0.187551,
   "parent": {
     "name": "Sounds",
-    "path": "folders/Simple War/Sounds.yy",
+    "path": "folders/Sounds.yy",
   },
   "preload": false,
   "sampleRate": 44100,

@@ -3,21 +3,21 @@
 deck = [];
 discard = [];
 
-deck_x = x + 132;
-deck_y = y;
+deck_x = x + 150;
+deck_y = y + 100;
 
-discard_x = x - 132;
-discard_y = y;
+discard_x = x + 150;
+discard_y = y - 100;
 
-play_x = x;
-play_y = y - 256;
+play_x = x + 400;
+play_y = y;
 
 shuffle_seq = -1;
 
 shuffle_discard = function() {
 	deck = array_shuffle(discard);
 	discard = [];
-	shuffle_seq = layer_sequence_create("Battle_Cards", discard_x, discard_y, seq_shuffle);
+	//shuffle_seq = layer_sequence_create("Battle_Cards", discard_x, discard_y, seq_shuffle);
 	
 	//Destroy all cards in the discard pile
 	with(obj_card) {
@@ -54,10 +54,11 @@ declare_war = function(offset) {
 		goal_y : id.play_y,
 		in_war : true,
 	});
+	
 	//Sort based on depth
 	_battle_card.depth = -_battle_card.goal_x;
 	
-	repeat(_cards_to_create) {
+	repeat (_cards_to_create) {
 		var _card = instance_create_layer(deck_x, deck_y, "War_Cards", obj_card, {
 			owner : id,
 			goal_x : id.play_x + (_war_x_offset * 30),
@@ -68,7 +69,8 @@ declare_war = function(offset) {
 			_card.goal_y = obj_computer.play_y - (offset * 30);
 		}
 			
-		_card.sprite_index = sprCardBack;
+		_card.sprite_index = spr_card_backs;
+		_card.image_index = 0;
 		_card.in_war = true;
 			
 		++_war_x_offset;

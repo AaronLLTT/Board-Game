@@ -39,10 +39,13 @@ var _done_moving = at_goal();
 #region In the discard state
 	
 	if (in_discard) {
+		
+		sprite_index = spr_card_backs;
+		image_index = 0;
 	//Check if we're reaching the discard and the deck is empty
 	if (_done_moving) {
 		//Add ourself to the discard array
-		array_push(owner.discard, image_index);
+		array_push(owner.discard, face);
 		//Deactivate ourselves
 		instance_destroy();
 		

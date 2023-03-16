@@ -4,7 +4,7 @@
 var _full_deck = [];
 
 //Get the amount of cards we'll use in our deck
-var _cards = sprite_get_number(sprCards);
+var _cards = sprite_get_number(spr_playing_cards);
 
 //Fill up the deck array with numbers
 for(var _i = 0; _i < _cards; ++_i) {
@@ -31,6 +31,8 @@ war_level = 1;
 
 global.REVIEW_TIME = 60;
 global.WAR = false;
+
+audio_play_sound(snd_volcanic_theme, 1, true);
 
 compare_cards = function() {
 	var _winner = undefined;

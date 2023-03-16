@@ -8,8 +8,8 @@
   "managed": true,
   "overriddenProperties": [],
   "parent": {
-    "name": "Simple War",
-    "path": "folders/Simple War.yy",
+    "name": "Objects",
+    "path": "folders/Objects.yy",
   },
   "parentObjectId": {
     "name": "obj_player_parent",
@@ -31,8 +31,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "sprPlayerMale",
-    "path": "sprites/sprPlayerMale/sprPlayerMale.yy",
+    "name": "spr_computer",
+    "path": "sprites/spr_computer/spr_computer.yy",
   },
   "spriteMaskId": null,
   "visible": true,

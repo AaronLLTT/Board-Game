@@ -9,8 +9,8 @@
   "managed": true,
   "overriddenProperties": [],
   "parent": {
-    "name": "Simple War",
-    "path": "folders/Simple War.yy",
+    "name": "Objects",
+    "path": "folders/Objects.yy",
   },
   "parentObjectId": null,
   "persistent": false,
@@ -36,8 +36,8 @@
   ],
   "solid": false,
   "spriteId": {
-    "name": "sprCards",
-    "path": "sprites/sprCards/sprCards.yy",
+    "name": "spr_playing_cards",
+    "path": "sprites/spr_playing_cards/spr_playing_cards.yy",
   },
   "spriteMaskId": null,
   "visible": true,
