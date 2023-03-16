@@ -1,6 +1,6 @@
 /// @description Go to War! 
 
-if (can_draw && !in_war) {
+if (can_draw && global.WAR == false) {
 	audio_play_sound(snd_play_card, 1, false);
 	
 	//Create a card for the player
@@ -24,10 +24,10 @@ if (can_draw && !in_war) {
 
 	can_draw = false;
 }
-else if (in_war) {
+else if (global.WAR == true) {
 	
-	player_card = obj_computer.declare_war(war_level);
-	computer_card = obj_player.declare_war(war_level);
+	player_card = obj_player.declare_war(war_level);
+	computer_card = obj_computer.declare_war(war_level);
 	
 	++war_level;
 }

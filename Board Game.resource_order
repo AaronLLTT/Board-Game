@@ -13,6 +13,7 @@
     {"name":"Sequences","order":10,"path":"folders/Sequences.yy",},
     {"name":"Shaders","order":5,"path":"folders/Shaders.yy",},
     {"name":"Simple War","order":15,"path":"folders/Simple War.yy",},
+    {"name":"Sounds","order":11,"path":"folders/Simple War/Sounds.yy",},
     {"name":"Sounds","order":2,"path":"folders/Sounds.yy",},
     {"name":"Board","order":13,"path":"folders/Sprites/Board.yy",},
     {"name":"Cards","order":11,"path":"folders/Sprites/Cards.yy",},
@@ -33,7 +34,6 @@
     {"name":"Players","order":12,"path":"folders/Sprites/Players.yy",},
     {"name":"Tile Sets","order":1,"path":"folders/Tile Sets.yy",},
     {"name":"Timelines","order":7,"path":"folders/Timelines.yy",},
-    {"name":"Sounds","order":11,"path":"folders/Simple War/Sounds.yy",},
   ],
   "ResourceOrderSettings": [
     {"name":"spr_rock_medium_2","order":1,"path":"sprites/spr_rock_medium_2/spr_rock_medium_2.yy",},

@@ -1,46 +1,5 @@
 /// @description Compare Cards 
 
-if (cards_in_war mod 2 == 0 && cards_in_war != 0) {
-	var _winner = undefined;
-	
-	//The player wins!
-	if (player_card.value > computer_card.value) {
-		_winner = obj_player;
-	}
-	//Player loses!
-	else if (player_card.value < computer_card.value) {
-		_winner = obj_computer;
-	}
-	//They tie
-	else {
-		in_war = true;
-	}
-	
-	if (_winner != undefined) {
-		//Have the cards add themselves once in the discard proper
-		//array_push(_winner.discard, player_card.value);
-		//array_push(_winner.discard, computer_card.value);
-		
-		with (player_card) {
-			goal_x = _winner.discard_x;
-			goal_y = _winner.discard_y;
-			in_war = false;
-			in_discard = true;
-			owner = _winner;
-		}
-		with (computer_card) {
-			goal_x = _winner.discard_x;
-			goal_y = _winner.discard_y;
-			in_war = false;
-			in_discard = true;
-			owner = _winner;
-		}
-
-		//Reset and get ready for the next war
-		cards_in_war = 0;
-	}
-}
-
 //Check for win / loss
 if (array_length(obj_player.deck) == 0 and can_draw) {
 	//The player loses
