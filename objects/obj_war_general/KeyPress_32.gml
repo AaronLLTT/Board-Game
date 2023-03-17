@@ -24,10 +24,12 @@ if (can_draw && global.WAR == false) {
 
 	can_draw = false;
 }
-else if (global.WAR == true) {
+else if (can_draw && global.WAR == true) {
 	
 	player_card = obj_player.declare_war(war_level);
 	computer_card = obj_computer.declare_war(war_level);
 	
 	++war_level;
+	
+	can_draw = false;
 }

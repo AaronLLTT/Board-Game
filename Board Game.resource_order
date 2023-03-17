@@ -1,12 +1,12 @@
 {
   "FolderOrderSettings": [
     {"name":"Fonts","order":6,"path":"folders/Fonts.yy",},
+    {"name":"Objects","order":16,"path":"folders/Objects.yy",},
     {"name":"Rooms","order":9,"path":"folders/Rooms.yy",},
     {"name":"Scripts","order":4,"path":"folders/Scripts.yy",},
     {"name":"Sequences","order":10,"path":"folders/Sequences.yy",},
     {"name":"Shaders","order":5,"path":"folders/Shaders.yy",},
     {"name":"Sounds","order":2,"path":"folders/Sounds.yy",},
-    {"name":"Objects","order":16,"path":"folders/Objects.yy",},
   ],
   "ResourceOrderSettings": [
     {"name":"snd_volcanic_theme","order":2,"path":"sounds/snd_volcanic_theme/snd_volcanic_theme.yy",},

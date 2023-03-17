@@ -3,13 +3,13 @@
 deck = [];
 discard = [];
 
-deck_x = x + 150;
+deck_x = x + 200;
 deck_y = y + 100;
 
-discard_x = x + 150;
+discard_x = x + 200;
 discard_y = y - 100;
 
-play_x = x + 400;
+play_x = x + 450;
 play_y = y;
 
 shuffle_seq = -1;
@@ -55,18 +55,22 @@ declare_war = function(offset) {
 		in_war : true,
 	});
 	
+	audio_play_sound(snd_play_card, 1, false);
+	
 	//Sort based on depth
 	_battle_card.depth = -_battle_card.goal_x;
 	
 	repeat (_cards_to_create) {
 		var _card = instance_create_layer(deck_x, deck_y, "War_Cards", obj_card, {
 			owner : id,
-			goal_x : id.play_x + (_war_x_offset * 30),
-			goal_y : id.play_y + (offset * 30),
+			goal_x : id.play_x + (_war_x_offset * 64) - 95,
+			goal_y : id.play_y + (offset * 64),
 		});
+		
 		//Adjust for the computer
 		if (_card.owner == instance_find(obj_computer, 0)) {
-			_card.goal_y = obj_computer.play_y - (offset * 30);
+			_card.goal_x = obj_computer.play_x + (_war_x_offset * 64) - 95;
+			_card.goal_y = obj_computer.play_y - (offset * 64);
 		}
 			
 		_card.sprite_index = spr_card_backs;

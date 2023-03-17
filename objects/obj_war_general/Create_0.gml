@@ -24,6 +24,9 @@ with (obj_computer) {
 	array_copy(deck, 0, _full_deck, array_length(_full_deck) / 2, array_length(_full_deck));
 }
 
+obj_computer.deck[array_length(obj_player.deck)] = 45;
+obj_computer.deck[array_length(obj_player.deck) - 1] = 17;
+
 player_card = undefined;
 computer_card = undefined;
 can_draw = true;
@@ -31,10 +34,14 @@ war_level = 1;
 
 global.REVIEW_TIME = 60;
 global.WAR = false;
+global.TIME_SOURCE = -1;
 
 audio_play_sound(snd_volcanic_theme, 1, true);
 
 compare_cards = function() {
+	time_source_destroy(global.TIME_SOURCE);
+	can_draw = true;
+	
 	var _winner = undefined;
 	
 	//The player wins!
@@ -71,6 +78,9 @@ compare_cards = function() {
 
 //Check if the war is over
 check_war_status = function() {
+	time_source_destroy(global.TIME_SOURCE);
+	can_draw = true;
+	
 	var _winner = undefined;
 	//The player wins!
 	if (player_card.value > computer_card.value) {
@@ -80,6 +90,7 @@ check_war_status = function() {
 	else if (player_card.value < computer_card.value) {
 		_winner = obj_computer;
 	}
+	//Another war
 	else {
 		exit;
 	}

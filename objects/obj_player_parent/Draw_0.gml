@@ -16,3 +16,8 @@ if (array_length(discard) == 0) {
 else {
 	draw_sprite(spr_card_backs, 0, discard_x, discard_y);
 }
+
+//Draw our name
+draw_set_halign(fa_center);
+draw_set_font(fntNames);
+draw_text(x, bbox_bottom + 4, name);
