@@ -14,7 +14,7 @@ for(var _i = 0; _i < _cards; ++_i) {
 //Shuffle the array
 _full_deck = array_shuffle(_full_deck);
 
-//_full_deck = [5, 5, 22, 12, 0, 45, 20, 12]; //TESTING ONLY
+//_full_deck = [5, 8]; //TESTING ONLY
 
 //Give the player and computer half the deck each
 with(obj_player) {
@@ -24,8 +24,8 @@ with (obj_computer) {
 	array_copy(deck, 0, _full_deck, array_length(_full_deck) / 2, array_length(_full_deck));
 }
 
-obj_computer.deck[array_length(obj_player.deck)] = 45;
-obj_computer.deck[array_length(obj_player.deck) - 1] = 17;
+//obj_computer.deck[array_length(obj_player.deck)] = 45;
+//obj_computer.deck[array_length(obj_player.deck) - 1] = 17;
 
 player_card = undefined;
 computer_card = undefined;
@@ -36,11 +36,11 @@ global.REVIEW_TIME = 60;
 global.WAR = false;
 global.TIME_SOURCE = -1;
 
-audio_play_sound(snd_volcanic_theme, 1, true);
+music = audio_play_sound(snd_volcanic_theme, 1, true);
+war_music = undefined;
 
 compare_cards = function() {
 	time_source_destroy(global.TIME_SOURCE);
-	can_draw = true;
 	
 	var _winner = undefined;
 	
@@ -54,6 +54,9 @@ compare_cards = function() {
 	}
 	//They tie
 	else {
+		audio_sound_gain(music, 0, 1);
+		war_music = audio_play_sound(snd_war_time, 1, true);
+		can_draw = true;
 		global.WAR = true;
 	}
 	
@@ -79,7 +82,6 @@ compare_cards = function() {
 //Check if the war is over
 check_war_status = function() {
 	time_source_destroy(global.TIME_SOURCE);
-	can_draw = true;
 	
 	var _winner = undefined;
 	//The player wins!
@@ -92,6 +94,7 @@ check_war_status = function() {
 	}
 	//Another war
 	else {
+		can_draw = true;
 		exit;
 	}
 	
@@ -105,4 +108,7 @@ check_war_status = function() {
 	}
 	
 	global.WAR = false;
+	war_level = 1;
+	audio_sound_gain(war_music, 0, 2000);
+	audio_sound_gain(music, 1, 2000);
 }
