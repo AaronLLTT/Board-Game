@@ -3,6 +3,7 @@
 //Determine image and value
 image_index = array_pop(owner.deck);
 value = image_index mod 13 + 2;
+face = image_index;
 
 //Both check to see if the card is close to the goal location and set it there once close enough
 //will return true once it's reached its goal, and false until it has

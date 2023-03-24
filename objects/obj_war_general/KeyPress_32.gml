@@ -1,6 +1,7 @@
 /// @description Draw Cards 
 
 //The primary state of the game, drawing 1 card for each player
+/*
 if (can_draw && global.WAR == false) {
 	audio_play_sound(snd_play_card, 1, false);
 	
@@ -12,7 +13,7 @@ if (can_draw && global.WAR == false) {
 		in_war : true
 	});
 	//Keep track of the card in this object
-	player_card = _card;
+	first_player_card = _card;
 	
 	//Create the card for the computer
 	_card = instance_create_layer(obj_computer.deck_x, obj_computer.deck_y, "Battle_Cards", obj_card, {
@@ -22,7 +23,7 @@ if (can_draw && global.WAR == false) {
 		in_war : true
 	});
 	//Keep track of the card in this object
-	computer_card = _card;
+	second_player_card = _card;
 	
 	//Don't allow drawing just yet. The cards, when put into the discard, will enable this boolean
 	can_draw = false;
@@ -31,8 +32,8 @@ if (can_draw && global.WAR == false) {
 else if (can_draw && global.WAR == true) {
 	//Increase war level and call each player to war
 	++war_level;
-	player_card = obj_player.declare_war(war_level);
-	computer_card = obj_computer.declare_war(war_level);
+	first_player_card = obj_player.declare_war(war_level);
+	second_player_card = obj_computer.declare_war(war_level);
 	
 	can_draw = false;
 }

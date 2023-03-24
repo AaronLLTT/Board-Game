@@ -21,7 +21,7 @@
   "isEcma": false,
   "LibraryEmitters": [],
   "MetaData": {
-    "IDEVersion": "2023.2.1.75",
+    "IDEVersion": "2023.200.0.299",
   },
   "resources": [
     {"id":{"name":"fntWar","path":"fonts/fntWar/fntWar.yy",},},
@@ -30,16 +30,16 @@
     {"id":{"name":"spr_player","path":"sprites/spr_player/spr_player.yy",},},
     {"id":{"name":"spr_card_backs","path":"sprites/spr_card_backs/spr_card_backs.yy",},},
     {"id":{"name":"spr_empty_card_stack","path":"sprites/spr_empty_card_stack/spr_empty_card_stack.yy",},},
+    {"id":{"name":"obj_network_general","path":"objects/obj_network_general/obj_network_general.yy",},},
     {"id":{"name":"obj_card","path":"objects/obj_card/obj_card.yy",},},
     {"id":{"name":"spr_computer","path":"sprites/spr_computer/spr_computer.yy",},},
-    {"id":{"name":"obj_computer","path":"objects/obj_computer/obj_computer.yy",},},
     {"id":{"name":"spr_card_stacks","path":"sprites/spr_card_stacks/spr_card_stacks.yy",},},
     {"id":{"name":"snd_won_game","path":"sounds/snd_won_game/snd_won_game.yy",},},
     {"id":{"name":"snd_play_card","path":"sounds/snd_play_card/snd_play_card.yy",},},
     {"id":{"name":"spr_playing_cards","path":"sprites/spr_playing_cards/spr_playing_cards.yy",},},
     {"id":{"name":"obj_war_general","path":"objects/obj_war_general/obj_war_general.yy",},},
+    {"id":{"name":"rm_start","path":"rooms/rm_start/rm_start.yy",},},
     {"id":{"name":"snd_lost_game","path":"sounds/snd_lost_game/snd_lost_game.yy",},},
-    {"id":{"name":"obj_player_parent","path":"objects/obj_player_parent/obj_player_parent.yy",},},
     {"id":{"name":"rm_war","path":"rooms/rm_war/rm_war.yy",},},
     {"id":{"name":"fntNames","path":"fonts/fntNames/fntNames.yy",},},
     {"id":{"name":"snd_war_time","path":"sounds/snd_war_time/snd_war_time.yy",},},
@@ -48,6 +48,7 @@
     {"id":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},},
   ],
   "RoomOrderNodes": [
+    {"roomId":{"name":"rm_start","path":"rooms/rm_start/rm_start.yy",},},
     {"roomId":{"name":"rm_war","path":"rooms/rm_war/rm_war.yy",},},
   ],
   "TextureGroups": [
