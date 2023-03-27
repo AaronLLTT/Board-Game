@@ -1,10 +1,10 @@
 /// @description Create the Decks 
 
 //Create an empty array
-var _full_deck = array_create(52);
+var _full_deck = array_create(2);
 
 //Get the amount of cards we'll use in our deck
-var _cards = sprite_get_number(spr_playing_cards);
+var _cards = 2;//sprite_get_number(spr_playing_cards);
 
 //Fill up the deck array with numbers
 for(var _i = 0; _i < _cards; ++_i) {
@@ -25,10 +25,10 @@ with(obj_player) {
 }
 
 //DEBUGGING ONLY
-with(obj_player) {
+/*with(obj_player) {
 	deck[array_length(deck) - 1] = 17;
 	deck[array_length(deck) - 2] = 45;
-}
+}*/
 
 //Initialize the variables this object needs during the game
 cards = array_create(2, undefined);
@@ -64,6 +64,9 @@ compare_cards = function() {
 	
 	//Check if we can compare
 	if (cards[0] == undefined || cards[1] == undefined) {
+		exit;
+	}
+	if (cards[0].in_war == false && cards[1].in_war == false) {
 		exit;
 	}
 	//Create the variable to hold the winner, whomever it is
@@ -108,6 +111,10 @@ compare_cards = function() {
 		in_discard = true;
 		owner = _winner;
 	}
+	
+	//Cannot keep a reference to a destroyed instance in Rollback
+	cards[0] = undefined;
+	cards[1] = undefined;
 }
 
 //Check if the war is over
@@ -152,6 +159,21 @@ check_war_status = function() {
 	//Reset all the things that changed during the war
 	war = false;
 	war_level = 1;
+	cards[0] = undefined;
+	cards[1] = undefined;
 	audio_sound_gain(war_music, 0, 2000);
 	audio_sound_gain(music, 1, 2000);
+}
+
+game_over = function() {
+	with(obj_player) {
+		audio_sound_gain(other.music, 0, 500);
+		if (lost == false && player_local) {
+			audio_play_sound(snd_won_game, 100, false);
+		}
+		else if (lost == true && player_local) {
+			audio_play_sound(snd_lost_game, 100, false);
+		}
+		other.alarm[2] = audio_sound_length(snd_lost_game);
+	}
 }

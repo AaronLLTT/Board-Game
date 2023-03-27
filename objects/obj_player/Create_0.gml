@@ -31,10 +31,29 @@ play_y = y;
 
 ready = false;
 
+lost = undefined;
+
+debug = false;
+my_card = undefined;
+
 shuffle_discard = function() {
+	//Check if lost
+	if (array_length(discard) == 0) {
+		lost = true;
+		//audio_play_sound(snd_lost_game, 1, false);
+		with(obj_player) {
+			lost ??= false; //Nullish coalescing operator
+			if (lost == false) {
+				//audio_play_sound(snd_won_game, 1, false);
+			}
+		}
+		obj_war_general.game_over();
+		exit;
+	}
+	
+	//Haven't lost, proceed as normal
 	deck = array_shuffle(discard);
 	discard = [];
-	//shuffle_seq = layer_sequence_create("Battle_Cards", discard_x, discard_y, seq_shuffle);
 	
 	//Destroy all cards in the discard pile
 	with(obj_card) {
@@ -71,9 +90,6 @@ declare_war = function(offset) {
 		goal_y : id.play_y,
 	});
 	
-	_battle_card.sprite_index = spr_card_backs;
-	_battle_card.image_index = 0;
-	
 	audio_play_sound(snd_play_card, 1, false);
 	
 	//Sort based on depth
@@ -87,9 +103,7 @@ declare_war = function(offset) {
 			goal_x : id.play_x + (_war_x_offset * 64) - 95,
 			goal_y : id.play_y + (offset * 64),
 		});
-			
-		_card.sprite_index = spr_card_backs;
-		_card.image_index = 0;
+		
 		_card.in_war = true;
 		_card.just_drawn = false;
 			
@@ -102,14 +116,14 @@ declare_war = function(offset) {
 draw_card = function() {
 	audio_play_sound(snd_play_card, 1, false);
 	
-	card = instance_create_layer(deck_x, deck_y, "Battle_Cards", obj_card, {
-		sprite_index: spr_card_backs,
+	var _card = instance_create_layer(deck_x, deck_y, "Battle_Cards", obj_card, {
 		goal_x : play_x,
 		goal_y : play_y,
 		owner : id,
 	});
 	
-	obj_war_general.cards[player_id] = card;
+	obj_war_general.cards[player_id] = _card;
+	my_card = _card;
 	
 	ready = true;
 }

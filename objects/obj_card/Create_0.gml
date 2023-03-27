@@ -7,6 +7,7 @@ face = image_index;
 
 //Don't show the card at draw
 image_index = 0;
+sprite_index = spr_card_backs;
 
 //Both check to see if the card is close to the goal location and set it there once close enough
 //will return true once it's reached its goal, and false until it has

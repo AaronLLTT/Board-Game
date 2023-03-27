@@ -8,3 +8,7 @@ if (_input.space_pressed && obj_war_general.war == true && !ready) {
 else if (_input.space_pressed && !ready) {
 	draw_card();
 }
+
+if (_input.up_pressed) {
+	debug = !debug;
+}
