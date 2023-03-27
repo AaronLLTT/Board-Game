@@ -1,2 +1,7 @@
 /// @description Compare Cards
-compare_cards();
+if (!war) {
+	compare_cards();
+}
+else {
+	check_war_status();
+}

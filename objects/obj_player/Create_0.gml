@@ -69,13 +69,17 @@ declare_war = function(offset) {
 		owner : id,
 		goal_x : id.play_x + (offset * 30),
 		goal_y : id.play_y,
-		in_war : true,
 	});
+	
+	_battle_card.sprite_index = spr_card_backs;
+	_battle_card.image_index = 0;
 	
 	audio_play_sound(snd_play_card, 1, false);
 	
 	//Sort based on depth
 	_battle_card.depth = -_battle_card.goal_x;
+	
+	obj_war_general.cards[player_id] = _battle_card;
 	
 	repeat (_cards_to_create) {
 		var _card = instance_create_layer(deck_x, deck_y, "War_Cards", obj_card, {
@@ -83,24 +87,16 @@ declare_war = function(offset) {
 			goal_x : id.play_x + (_war_x_offset * 64) - 95,
 			goal_y : id.play_y + (offset * 64),
 		});
-		
-		//Adjust for the computer
-		if (_card.owner == instance_find(obj_computer, 0)) {
-			_card.goal_x = obj_computer.play_x + (_war_x_offset * 64) - 95;
-			_card.goal_y = obj_computer.play_y - (offset * 64);
-		}
 			
 		_card.sprite_index = spr_card_backs;
 		_card.image_index = 0;
 		_card.in_war = true;
+		_card.just_drawn = false;
 			
 		++_war_x_offset;
 	}
 	
-	//Outside of the loop, do these things.
-	_war_x_offset = 1;
-	
-	return _battle_card;
+	ready = true;
 }
 
 draw_card = function() {

@@ -12,7 +12,7 @@ else if (can_draw == false) {
 }
 
 
-if (global.WAR) {
+if (war) {
 	draw_set_font(fntWar);
 	draw_text_color(room_width / 2, room_height - 125, "WAR TIME!!", c_red, c_blue, c_orange, c_teal, 1);
 }

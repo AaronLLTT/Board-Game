@@ -17,7 +17,7 @@
   },
   "preload": false,
   "sampleRate": 44100,
-  "soundFile": "snd_war_time.ogg",
+  "soundFile": "snd_war_time.wav",
   "type": 0,
   "volume": 1.0,
 }

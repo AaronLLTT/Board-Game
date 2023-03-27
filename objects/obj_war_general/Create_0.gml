@@ -24,13 +24,19 @@ with(obj_player) {
 	}
 }
 
+//DEBUGGING ONLY
+with(obj_player) {
+	deck[array_length(deck) - 1] = 17;
+	deck[array_length(deck) - 2] = 45;
+}
+
 //Initialize the variables this object needs during the game
 cards = array_create(2, undefined);
 can_draw = true; //If the player can draw a card
 war_level = 0; //The war level of the game, 0 means no war
 
-global.REVIEW_TIME = 60; //How long to wait before moving the cards to the discard
-global.WAR = false; //If there's an active war
+review_time = 60; //How long to wait before moving the cards to the discard
+war = false; //If there's an active war
 //global.TIME_SOURCE = -1; //The active time source
 
 music = audio_play_sound(snd_volcanic_theme, 1, true); //The main theme music
@@ -44,18 +50,17 @@ reveal_cards = function() {
 		exit;
 	}
 	
-	with(obj_card) {
-		sprite_index = spr_playing_cards;
-		image_index = face;
-	}
+	//Reveal the cards
+	cards[0].sprite_index = spr_playing_cards;
+	cards[0].image_index = cards[0].face;
+	cards[1].sprite_index = spr_playing_cards;
+	cards[1].image_index = cards[1].face;
 	
-	alarm[1] = global.REVIEW_TIME;
+	alarm[1] = review_time;
 }
 
 //The function to compare the player and computer cards and determine a winner
 compare_cards = function() {
-	//This function is called by a time source, so destroy it
-	//time_source_destroy(global.TIME_SOURCE);
 	
 	//Check if we can compare
 	if (cards[0] == undefined || cards[1] == undefined) {
@@ -74,10 +79,17 @@ compare_cards = function() {
 	}
 	//They tie - WAR TIME!
 	else {
-		audio_sound_gain(music, 0, 1);
-		war_music = audio_play_sound(snd_war_time, 1, true);
+		audio_sound_gain(music, 0, 2000);
+		war_music = audio_play_sound(snd_war_time, 1, true, 0.5);
 		can_draw = true;
-		global.WAR = true;
+		war = true;
+		//Increase war level and call each player to war
+		++war_level;
+		obj_player.ready = false;
+		//cards[0] = cards[0].owner.declare_war(war_level);
+		//cards[1] = cards[1].owner.declare_war(war_level);
+		cards[0] = undefined;
+		cards[1] = undefined;
 		exit;
 	}
 	
@@ -100,22 +112,31 @@ compare_cards = function() {
 
 //Check if the war is over
 check_war_status = function() {
-	//This function was called by a time source, so destroy it
-	//time_source_destroy(global.TIME_SOURCE);
+	if (cards[0] == undefined || cards[1] == undefined) {
+		exit;
+	}
+	if (cards[0].in_war == false && cards[1].in_war == false) {
+		exit;
+	}
+	
 	//Create the variable to hold the winner, whomever it is
 	var _winner = undefined;
 	
 	//The player wins!
-	if (first_player_card.value > second_player_card.value) {
-		_winner = obj_player;
+	if (cards[0].value > cards[1].value) {
+		_winner = cards[0].owner;
 	}
 	//Player loses!
-	else if (first_player_card.value < second_player_card.value) {
-		_winner = obj_computer;
+	else if (cards[0].value < cards[1].value) {
+		_winner = cards[1].owner;
 	}
 	//Another war
 	else {
+		++war_level;
 		can_draw = true;
+		obj_player.ready = false;
+		cards[0] = undefined;
+		cards[1] = undefined;
 		exit;
 	}
 	
@@ -129,7 +150,7 @@ check_war_status = function() {
 		}
 	}
 	//Reset all the things that changed during the war
-	global.WAR = false;
+	war = false;
 	war_level = 1;
 	audio_sound_gain(war_music, 0, 2000);
 	audio_sound_gain(music, 1, 2000);
