@@ -108,7 +108,6 @@ draw_card = function() {
 	
 	card = instance_create_layer(deck_x, deck_y, "Battle_Cards", obj_card, {
 		sprite_index: spr_card_backs,
-		image_index : 0,
 		goal_x : play_x,
 		goal_y : play_y,
 		owner : id,

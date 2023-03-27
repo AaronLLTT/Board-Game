@@ -36,6 +36,22 @@ global.WAR = false; //If there's an active war
 music = audio_play_sound(snd_volcanic_theme, 1, true); //The main theme music
 war_music = undefined; //Music specifically for the war
 
+reveal_cards = function() {
+	if (cards[0] == undefined || cards[1] == undefined) {
+		exit;
+	}
+	if (cards[0].in_war == false && cards[1].in_war == false) {
+		exit;
+	}
+	
+	with(obj_card) {
+		sprite_index = spr_playing_cards;
+		image_index = face;
+	}
+	
+	alarm[1] = global.REVIEW_TIME;
+}
+
 //The function to compare the player and computer cards and determine a winner
 compare_cards = function() {
 	//This function is called by a time source, so destroy it
@@ -44,12 +60,6 @@ compare_cards = function() {
 	//Check if we can compare
 	if (cards[0] == undefined || cards[1] == undefined) {
 		exit;
-	}
-	else {
-		cards[0].sprite_index = spr_playing_cards;
-		cards[0].image_index = cards[0].face;
-		cards[1].sprite_index = spr_playing_cards;
-		cards[1].image_index = cards[1].face;
 	}
 	//Create the variable to hold the winner, whomever it is
 	var _winner = undefined;

@@ -2,9 +2,9 @@
 
 rollback_define_player(obj_player);
 
-/*rollback_define_mock_input(1, {
+rollback_define_mock_input(1, {
 	space : vk_enter
-});*/
+});
 
 var _joined = rollback_join_game();
 
