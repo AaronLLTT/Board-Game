@@ -1,16 +1,13 @@
 /// @description Create / Join a game
 
-rollback_define_player(obj_player);
+create_game = function() {
+	rollback_define_player(obj_player);
 
-rollback_use_random_input(false);
+	//rollback_use_random_input(false);
 
-/*rollback_define_mock_input(1, {
-	space : vk_enter,
-	up : vk_escape
-});*/
+	var _joined = rollback_join_game();
 
-var _joined = rollback_join_game();
-
-if (!_joined) {
-	rollback_create_game(2, false);
+	if (!_joined) {
+		rollback_create_game(2, false);
+	}
 }
