@@ -1,5 +1,8 @@
 /// @description Create the Decks 
 
+//Keep track of players
+players = array_create(2);
+
 //Create an empty array
 var _full_deck = array_create(2);
 
@@ -14,21 +17,35 @@ for(var _i = 0; _i < _cards; ++_i) {
 //Shuffle the array
 _full_deck = array_shuffle(_full_deck);
 
-//Give the player and computer half the deck each
+//Give the players half the deck each
 with(obj_player) {
 	if (player_id == 0) {
 		array_copy(deck, 0, _full_deck, 0, array_length(_full_deck) / 2);
+		other.players[0] = id;
 	}
 	else {
 		array_copy(deck, 0, _full_deck, array_length(_full_deck) / 2, array_length(_full_deck));
+		players[1] = id;
 	}
 }
 
+//Single Player
+if (instance_exists(obj_computer)) {
+	array_copy(obj_computer.deck, 0, _full_deck, array_length(_full_deck) / 2, array_length(_full_deck));
+	players[1] = obj_computer;
+}
+
 //DEBUGGING ONLY
-/*with(obj_player) {
+/*
+with(players[0]) {
 	deck[array_length(deck) - 1] = 17;
 	deck[array_length(deck) - 2] = 45;
-}*/
+}
+with(players[1]) {
+	deck[array_length(deck) - 1] = 17;
+	deck[array_length(deck) - 2] = 45;
+} */
+
 
 //Initialize the variables this object needs during the game
 cards = array_create(2, undefined);
@@ -37,10 +54,16 @@ war_level = 0; //The war level of the game, 0 means no war
 
 review_time = 60; //How long to wait before moving the cards to the discard
 war = false; //If there's an active war
-//global.TIME_SOURCE = -1; //The active time source
 
 music = audio_play_sound(snd_volcanic_theme, 1, true); //The main theme music
 war_music = undefined; //Music specifically for the war
+
+player_count = 1;
+game_finished = false;
+
+can_battle = function() {
+	
+}
 
 reveal_cards = function() {
 	if (cards[0] == undefined || cards[1] == undefined) {
@@ -88,7 +111,8 @@ compare_cards = function() {
 		war = true;
 		//Increase war level and call each player to war
 		++war_level;
-		obj_player.ready = false;
+		players[0].ready = false;
+		players[1].ready = false
 		//cards[0] = cards[0].owner.declare_war(war_level);
 		//cards[1] = cards[1].owner.declare_war(war_level);
 		cards[0] = undefined;
@@ -141,7 +165,8 @@ check_war_status = function() {
 	else {
 		++war_level;
 		can_draw = true;
-		obj_player.ready = false;
+		players[0].ready = false;
+		players[1].ready = false
 		cards[0] = undefined;
 		cards[1] = undefined;
 		exit;
@@ -166,7 +191,7 @@ check_war_status = function() {
 }
 
 game_over = function() {
-	with(obj_player) {
+	with(players[0]) {
 		audio_sound_gain(other.music, 0, 500);
 		if (lost == false && player_local) {
 			audio_play_sound(snd_won_game, 100, false);
@@ -176,4 +201,5 @@ game_over = function() {
 		}
 		other.alarm[2] = audio_sound_length(snd_lost_game);
 	}
+	game_finished = true;
 }

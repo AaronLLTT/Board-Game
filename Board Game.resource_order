@@ -21,6 +21,7 @@
     {"name":"spr_network_options","order":9,"path":"sprites/spr_network_options/spr_network_options.yy",},
     {"name":"spr_playing_cards","order":4,"path":"sprites/spr_playing_cards/spr_playing_cards.yy",},
     {"name":"obj_war_general","order":4,"path":"objects/obj_war_general/obj_war_general.yy",},
+    {"name":"obj_computer","order":8,"path":"objects/obj_computer/obj_computer.yy",},
     {"name":"snd_lost_game","order":3,"path":"sounds/snd_lost_game/snd_lost_game.yy",},
     {"name":"fntMenu","order":3,"path":"fonts/fntMenu/fntMenu.yy",},
     {"name":"obj_player_select_button","order":7,"path":"objects/obj_player_select_button/obj_player_select_button.yy",},

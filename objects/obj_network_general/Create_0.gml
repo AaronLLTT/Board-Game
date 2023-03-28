@@ -1,13 +1,12 @@
 /// @description Create / Join a game
 
-create_game = function() {
-	rollback_define_player(obj_player);
+//Check if we're joining a game
+rollback_define_player(obj_player);
 
-	//rollback_use_random_input(false);
+rollback_join_game();
 
-	var _joined = rollback_join_game();
+create_game = function(_player_count) {
+	instance_destroy(obj_player_select_button);
 
-	if (!_joined) {
-		rollback_create_game(2, false);
-	}
+	rollback_create_game(_player_count, false);
 }

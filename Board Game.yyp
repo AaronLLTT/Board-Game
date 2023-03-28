@@ -41,6 +41,7 @@
     {"id":{"name":"spr_network_options","path":"sprites/spr_network_options/spr_network_options.yy",},},
     {"id":{"name":"spr_playing_cards","path":"sprites/spr_playing_cards/spr_playing_cards.yy",},},
     {"id":{"name":"obj_war_general","path":"objects/obj_war_general/obj_war_general.yy",},},
+    {"id":{"name":"obj_computer","path":"objects/obj_computer/obj_computer.yy",},},
     {"id":{"name":"snd_lost_game","path":"sounds/snd_lost_game/snd_lost_game.yy",},},
     {"id":{"name":"rm_war","path":"rooms/rm_war/rm_war.yy",},},
     {"id":{"name":"fntMenu","path":"fonts/fntMenu/fntMenu.yy",},},

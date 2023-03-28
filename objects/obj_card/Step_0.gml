@@ -47,12 +47,8 @@ if (in_discard) {
 			//It must be in this if section otherwise the
 			//end section will trigger by the first card
 			//adding itself to the array
-			obj_player.ready = false;
-			//If either the player or computer are empty, shuffle their cards
-			with(obj_player) {
-				if (array_length(deck) == 0) {
-					shuffle_discard();
-				}
+			for(var i = 0; i < array_length(obj_war_general.players); ++i) {
+				obj_war_general.players[i].shuffle_discard();
 			}
 		}
 	}

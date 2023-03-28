@@ -1,9 +1,9 @@
 /// @description Call function
 //Multiplayer game
-if (image_index == 0) {
-	obj_network_general.create_game();
+if (image_index == 1) {
+	obj_network_general.create_game(2);
 }
 //Single player game
-else {
-	
+else if (image_index == 3) {
+	obj_network_general.create_game(1);
 }

@@ -4,11 +4,13 @@ draw_set_font(fntInstructions);
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 
-if (can_draw) {
-	draw_text(room_width / 2, room_height - 200, "Draw a card");
-}
-else if (can_draw == false) {
-	draw_text(room_width / 2, room_height - 200, "Wait");
+if (game_finished == false) {
+	if (can_draw) {
+		draw_text(room_width / 2, room_height - 200, "Draw a card");
+	}
+	else if (can_draw == false) {
+		draw_text(room_width / 2, room_height - 200, "Wait");
+	}
 }
 
 
