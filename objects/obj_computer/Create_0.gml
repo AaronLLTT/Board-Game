@@ -1,8 +1,7 @@
 /// @description Init 
-
 x = 1241;
 y = 384;
-image_index = 1;
+//image_index = 1;
 image_xscale = -0.25;
 image_yscale = .25;
 name = "Bobby";
@@ -26,14 +25,17 @@ lost = undefined;
 debug = false;
 my_card = undefined;
 
+//If we exist, we know we're the second player
+obj_game.init_player(id);
+
 shuffle_discard = function() {
 	//Check if lost
 	if (array_length(discard) == 0 && array_length(deck) == 0) {
 		lost = true;
-		for(var i = 0; i < array_length(obj_war_general.players); ++i) {
-			obj_war_general.players[i].lost ??= false;
+		for(var i = 0; i < array_length(obj_game.players); ++i) {
+			obj_game.players[i].lost ??= false;
 		}
-		obj_war_general.game_over();
+		obj_game.game_over();
 		exit;
 	}
 	
@@ -89,7 +91,7 @@ declare_war = function(offset) {
 	//Sort based on depth
 	_battle_card.depth = -_battle_card.goal_x;
 	
-	obj_war_general.cards[1] = _battle_card;
+	obj_game.cards[1] = _battle_card;
 	
 	repeat (_cards_to_create) {
 		var _card = instance_create_layer(deck_x, deck_y, "War_Cards", obj_card, {
@@ -116,7 +118,7 @@ draw_card = function() {
 		owner : id,
 	});
 	
-	obj_war_general.cards[1] = _card;
+	obj_game.cards[1] = _card;
 	my_card = _card;
 	
 	ready = true;

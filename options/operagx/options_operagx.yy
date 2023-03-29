@@ -7,7 +7,7 @@
   "option_operagx_game_name": "War v0.1",
   "option_operagx_guid": "f060e466-9548-430e-b944-69d0a2956f5e",
   "option_operagx_internalShareUrl": "https://gx.games/games/21usdt/war-v0-1/tracks/5c45977e-b82b-4347-baa3-ec27b116ca57/",
-  "option_operagx_interpolate_pixels": true,
+  "option_operagx_interpolate_pixels": false,
   "option_operagx_next_version": "1.0.0.2",
   "option_operagx_publicShareUrl": "",
   "option_operagx_scale": 0,

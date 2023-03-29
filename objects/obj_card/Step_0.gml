@@ -11,7 +11,7 @@ var _done_moving = at_goal();
 
 if (just_drawn && _done_moving) {
 	
-	obj_war_general.reveal_cards();
+	obj_game.reveal_cards();
 	
 	//Either way, update the cards state
 	in_war = true;
@@ -39,16 +39,22 @@ if (in_discard) {
 	if (_done_moving) {
 		//Add ourself to the discard array
 		array_push(owner.discard, image_index);
-		//Deactivate ourselves
+		//Destroy ourselves
 		instance_destroy();
-		//Only active this effect for the last of the cards heading to the discard
+		//Only activate this effect for the last of the cards heading to the discard
 		if (instance_number(obj_card) == 0) {
 			//This allows the player to draw another card
 			//It must be in this if section otherwise the
 			//end section will trigger by the first card
 			//adding itself to the array
-			for(var i = 0; i < array_length(obj_war_general.players); ++i) {
-				obj_war_general.players[i].shuffle_discard();
+			for(var i = 0; i < array_length(obj_game.players); ++i) {
+				var _player = obj_game.players[i];
+				
+				_player.ready = false;
+				
+				if (array_length(_player.deck) == 0) {
+					_player.shuffle_discard();
+				}
 			}
 		}
 	}

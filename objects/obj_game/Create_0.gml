@@ -1,54 +1,24 @@
-/// @description Create the Decks 
+/// @description Methods and Data
 
+#region Multiplayer specific
+//Init multiplayer
+rollback_define_player(obj_player);
+//If we're joining a game with a link, this will take us there immediately
+var _joined = rollback_join_game();
+//If joined is true, then we're in a live multiplayer game and ready to begin
+if (_joined) {
+	room_goto(rm_war);
+}
+#endregion
+
+#region Variables for this object
 //Keep track of players
-players = array_create(2);
-
-//Create an empty array
-var _full_deck = array_create(2);
-
-//Get the amount of cards we'll use in our deck
-var _cards = 2;//sprite_get_number(spr_playing_cards);
-
-//Fill up the deck array with numbers
-for(var _i = 0; _i < _cards; ++_i) {
-	_full_deck[_i] = _i;
-}
-
-//Shuffle the array
-_full_deck = array_shuffle(_full_deck);
-
-//Give the players half the deck each
-with(obj_player) {
-	if (player_id == 0) {
-		array_copy(deck, 0, _full_deck, 0, array_length(_full_deck) / 2);
-		other.players[0] = id;
-	}
-	else {
-		array_copy(deck, 0, _full_deck, array_length(_full_deck) / 2, array_length(_full_deck));
-		players[1] = id;
-	}
-}
-
-//Single Player
-if (instance_exists(obj_computer)) {
-	array_copy(obj_computer.deck, 0, _full_deck, array_length(_full_deck) / 2, array_length(_full_deck));
-	players[1] = obj_computer;
-}
-
-//DEBUGGING ONLY
-/*
-with(players[0]) {
-	deck[array_length(deck) - 1] = 17;
-	deck[array_length(deck) - 2] = 45;
-}
-with(players[1]) {
-	deck[array_length(deck) - 1] = 17;
-	deck[array_length(deck) - 2] = 45;
-} */
-
+players = [];
+decks[0][0] = [];
+decks[1][0] = [];
 
 //Initialize the variables this object needs during the game
-cards = array_create(2, undefined);
+cards = array_create(2, undefined); //The 2 active cards in battle
 can_draw = true; //If the player can draw a card
 war_level = 0; //The war level of the game, 0 means no war
 
@@ -58,11 +28,63 @@ war = false; //If there's an active war
 music = audio_play_sound(snd_volcanic_theme, 1, true); //The main theme music
 war_music = undefined; //Music specifically for the war
 
-player_count = 1;
 game_finished = false;
+//Assume the game is online
+game_local = false;
+#endregion
 
-can_battle = function() {
+#region Methods
+create_game = function(_player_count) {
+	room_goto(rm_war);
 	
+	rollback_create_game(_player_count, false);
+	
+	if (_player_count == 1) {
+		instance_create_layer(-500, -500, "Instances", obj_computer);
+		//Set the game to local
+		game_local = true;
+	}
+}
+
+create_decks = function() {
+	//Create and save the decks to distribute later
+	//Create an empty array
+	var _full_deck = array_create(3);
+
+	//Get the amount of cards we'll use in our deck
+	var _cards = 3;//sprite_get_number(spr_playing_cards);
+
+	//Fill up the deck array with numbers
+	for(var _i = 0; _i < _cards; ++_i) {
+		_full_deck[_i] = _i;
+	}
+
+	//Shuffle the array
+	_full_deck = array_shuffle(_full_deck);
+	
+	//Save the decks to distribute later
+	array_copy(decks[0], 0, _full_deck, 0, array_length(_full_deck) / 2);
+	array_copy(decks[1], 0, _full_deck, array_length(_full_deck) / 2, array_length(_full_deck));
+	
+	//DEBUGGING ONLY
+	/*
+	with(players[0]) {
+		deck[array_length(deck) - 1] = 17;
+		deck[array_length(deck) - 2] = 45;
+	}
+	with(players[1]) {
+		deck[array_length(deck) - 1] = 17;
+		deck[array_length(deck) - 2] = 45;
+	} */
+}
+
+init_player = function(_id) {
+	//Add the newly created player to our data
+	var _count = array_length(players);
+	players[_count] = _id;
+	
+	//Give the player a deck
+	_id.deck = decks[_count];
 }
 
 reveal_cards = function() {
@@ -190,16 +212,27 @@ check_war_status = function() {
 	audio_sound_gain(music, 1, 2000);
 }
 
+//@Function game_over - Called when any player has 0 cards in their deck and discard
+//Loops through each player and plays the appropriate music and sets the game_finished variable to true
 game_over = function() {
-	with(players[0]) {
-		audio_sound_gain(other.music, 0, 500);
-		if (lost == false && player_local) {
-			audio_play_sound(snd_won_game, 100, false);
-		}
-		else if (lost == true && player_local) {
+	with(obj_player) {
+		if (lost == true) {
 			audio_play_sound(snd_lost_game, 100, false);
 		}
-		other.alarm[2] = audio_sound_length(snd_lost_game);
+		else if (lost == false) {
+			audio_play_sound(snd_won_game, 100, false);
+		}
 	}
+
+	//Mute current music
+	audio_sound_gain(music, 0, 1000);
+	//Set the alarm to trigger to restart the game
+	alarm[2] = audio_sound_length(snd_won_game) * 60;
+	//Set to true for any game logic that depends on it
 	game_finished = true;
 }
+#endregion
+
+#region Call any methods we need
+create_decks();
+#endregion
