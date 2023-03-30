@@ -16,3 +16,6 @@ for(var _i = 0; _i < array_length(players); ++_i) {
 
 //Reset ending data
 game_finished = false;
+
+audio_stop_all();
+music = audio_play_sound(snd_volcanic_theme, 1, true);

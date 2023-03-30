@@ -29,7 +29,7 @@ discard_y = y - 100;
 play_x = x + 450 * sign(image_xscale);
 play_y = y;
 
-ready = false;
+can_play = true;
 
 lost = undefined;
 
@@ -40,24 +40,6 @@ my_card = undefined;
 obj_game.init_player(id);
 
 shuffle_discard = function() {
-	//Check if lost
-	if (array_length(discard) == 0 && array_length(deck) == 0) {
-		lost = true;
-		for(var i = 0; i < array_length(obj_game.players); ++i) {
-			obj_game.players[i].lost ??= false;
-		}
-		obj_game.game_over();
-		exit;
-	}
-	
-	//Ready up
-	ready = false;
-	
-	//Check if deck is empty and we should shuffle
-	if (array_length(deck) != 0 ) {
-		exit;
-	}
-	
 	//Haven't lost, proceed as normal
 	deck = array_shuffle(discard);
 	discard = [];
@@ -67,6 +49,29 @@ shuffle_discard = function() {
 		if (owner == other.id) {
 			instance_destroy();
 		}
+	}
+}
+
+end_of_round = function() {
+	//Check if we've lost the game
+	if (array_length(discard) == 0 && array_length(deck) == 0) {
+		
+		lost = true;
+		//Set the other player to have won the game
+		for(var i = 0; i < array_length(obj_game.players); ++i) {
+			obj_game.players[i].lost ??= false;
+		}
+		
+		obj_game.game_over();
+		
+		return;
+	}
+	
+	//We're here so we haven't lost the game, so prep for the next round
+	can_play = true;
+	
+	if (array_length(deck) == 0) {
+		shuffle_discard();
 	}
 }
 
@@ -102,7 +107,7 @@ declare_war = function(offset) {
 	//Sort based on depth
 	_battle_card.depth = -_battle_card.goal_x;
 	
-	obj_game.cards[player_id] = _battle_card;
+	obj_game.add_card(_battle_card);
 	
 	repeat (_cards_to_create) {
 		var _card = instance_create_layer(deck_x, deck_y, "War_Cards", obj_card, {
@@ -117,7 +122,7 @@ declare_war = function(offset) {
 		++_war_x_offset;
 	}
 	
-	ready = true;
+	can_play = false;
 }
 
 draw_card = function() {
@@ -129,8 +134,8 @@ draw_card = function() {
 		owner : id,
 	});
 	
-	obj_game.cards[player_id] = _card;
+	obj_game.add_card(_card);
 	my_card = _card;
 	
-	ready = true;
+	can_play = false;
 }

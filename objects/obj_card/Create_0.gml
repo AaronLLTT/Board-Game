@@ -1,13 +1,15 @@
-/// @description Init 
+/// @description Required Data and Method 
 
 //Determine image and value
 image_index = array_pop(owner.deck);
 value = image_index mod 13 + 2;
 face = image_index;
+image_xscale = 0.45;
+image_yscale = 0.45;
 
 //Don't show the card at draw
 image_index = 0;
-sprite_index = spr_card_backs;
+sprite_index = spr_card_back;
 
 //Both check to see if the card is close to the goal location and set it there once close enough
 //will return true once it's reached its goal, and false until it has

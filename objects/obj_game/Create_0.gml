@@ -14,6 +14,7 @@ if (_joined) {
 #region Variables for this object
 //Keep track of players
 players = [];
+//Keep track of the decks we will distribute in a 2D array
 decks[0][0] = [];
 decks[1][0] = [];
 
@@ -25,7 +26,7 @@ war_level = 0; //The war level of the game, 0 means no war
 review_time = 60; //How long to wait before moving the cards to the discard
 war = false; //If there's an active war
 
-music = audio_play_sound(snd_volcanic_theme, 1, true); //The main theme music
+music = audio_play_sound(snd_volcanic_theme, 1, true, 0.5); //The main theme music
 war_music = undefined; //Music specifically for the war
 
 game_finished = false;
@@ -49,10 +50,10 @@ create_game = function(_player_count) {
 create_decks = function() {
 	//Create and save the decks to distribute later
 	//Create an empty array
-	var _full_deck = array_create(3);
+	var _full_deck = array_create(52);
 
 	//Get the amount of cards we'll use in our deck
-	var _cards = 3;//sprite_get_number(spr_playing_cards);
+	var _cards = sprite_get_number(spr_playing_cards);
 
 	//Fill up the deck array with numbers
 	for(var _i = 0; _i < _cards; ++_i) {
@@ -87,12 +88,31 @@ init_player = function(_id) {
 	_id.deck = decks[_count];
 }
 
-reveal_cards = function() {
+is_battle_time = function() {
 	if (cards[0] == undefined || cards[1] == undefined) {
-		exit;
+		return false;
 	}
 	if (cards[0].in_war == false && cards[1].in_war == false) {
-		exit;
+		return false;
+	}
+	
+	return true;
+}
+
+add_card = function(_card) {
+	first_slot = players[0];
+	
+	if (_card.owner == first_slot) {
+		cards[0] = _card;
+	}
+	else {
+		cards[1] = _card;
+	}
+}
+
+reveal_cards = function() {
+	if (is_battle_time() == false) {
+		return;
 	}
 	
 	//Reveal the cards
@@ -106,14 +126,10 @@ reveal_cards = function() {
 
 //The function to compare the player and computer cards and determine a winner
 compare_cards = function() {
+	if (is_battle_time() == false) {
+		return;
+	}
 	
-	//Check if we can compare
-	if (cards[0] == undefined || cards[1] == undefined) {
-		exit;
-	}
-	if (cards[0].in_war == false && cards[1].in_war == false) {
-		exit;
-	}
 	//Create the variable to hold the winner, whomever it is
 	var _winner = undefined;
 	
@@ -133,8 +149,8 @@ compare_cards = function() {
 		war = true;
 		//Increase war level and call each player to war
 		++war_level;
-		players[0].ready = false;
-		players[1].ready = false
+		players[0].can_play = true;
+		players[1].can_play = true
 		//cards[0] = cards[0].owner.declare_war(war_level);
 		//cards[1] = cards[1].owner.declare_war(war_level);
 		cards[0] = undefined;
@@ -165,11 +181,8 @@ compare_cards = function() {
 
 //Check if the war is over
 check_war_status = function() {
-	if (cards[0] == undefined || cards[1] == undefined) {
-		exit;
-	}
-	if (cards[0].in_war == false && cards[1].in_war == false) {
-		exit;
+	if (is_battle_time() == false) {
+		return;
 	}
 	
 	//Create the variable to hold the winner, whomever it is
@@ -187,8 +200,8 @@ check_war_status = function() {
 	else {
 		++war_level;
 		can_draw = true;
-		players[0].ready = false;
-		players[1].ready = false
+		players[0].can_play = true;
+		players[1].can_play = true
 		cards[0] = undefined;
 		cards[1] = undefined;
 		exit;
