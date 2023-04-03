@@ -26,6 +26,9 @@ lost = undefined;
 debug = false;
 my_card = undefined;
 
+//Powers
+init_draw_two_power(id);
+
 //Put our info in the general's data
 obj_game.init_player(id);
 
@@ -108,6 +111,7 @@ declare_war = function(offset) {
 		
 		_card.in_war = true;
 		_card.just_drawn = false;
+		_card.battle_card = false;
 			
 		++_war_x_offset;
 	}

@@ -7,7 +7,19 @@ if (can_play == true)
 		declare_war(obj_game.war_level);
 	}
 	else {
-		draw_card();
+		//Choose to use the power randomly
+		var _num = irandom(1);
+		if (draw_pool <= 0) {
+			_num = 0;
+		}
+		if (_num == 0) {
+			power_toggle.image_index = 0;
+			draw_card();
+		}
+		else {
+			power_toggle.image_index = 1;
+			use_special_power();
+		}
 	}
 }
 

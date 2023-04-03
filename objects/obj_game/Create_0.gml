@@ -7,7 +7,7 @@ rollback_define_player(obj_player);
 var _joined = rollback_join_game();
 //If joined is true, then we're in a live multiplayer game and ready to begin
 if (_joined) {
-	room_goto(rm_war);
+	room_goto(rm_powers);
 }
 #endregion
 
@@ -17,6 +17,8 @@ players = [];
 //Keep track of the decks we will distribute in a 2D array
 decks[0][0] = [];
 decks[1][0] = [];
+//Track active powers
+powers = [];
 
 //Initialize the variables this object needs during the game
 cards = array_create(2, undefined); //The 2 active cards in battle
@@ -36,7 +38,7 @@ game_local = false;
 
 #region Methods
 create_game = function(_player_count) {
-	room_goto(rm_war);
+	room_goto(rm_powers);
 	
 	rollback_create_game(_player_count, false);
 	
@@ -45,15 +47,17 @@ create_game = function(_player_count) {
 		//Set the game to local
 		game_local = true;
 	}
+	
+	instance_deactivate_all(true);
 }
 
 create_decks = function() {
 	//Create and save the decks to distribute later
 	//Create an empty array
-	var _full_deck = array_create(52);
+	var _full_deck = array_create(2);
 
 	//Get the amount of cards we'll use in our deck
-	var _cards = sprite_get_number(spr_playing_cards);
+	var _cards = 2;//sprite_get_number(spr_playing_cards);
 
 	//Fill up the deck array with numbers
 	for(var _i = 0; _i < _cards; ++_i) {
@@ -116,10 +120,18 @@ reveal_cards = function() {
 	}
 	
 	//Reveal the cards
-	cards[0].sprite_index = spr_playing_cards;
+	/*cards[0].sprite_index = spr_playing_cards;
 	cards[0].image_index = cards[0].face;
 	cards[1].sprite_index = spr_playing_cards;
-	cards[1].image_index = cards[1].face;
+	cards[1].image_index = cards[1].face;*/
+	
+	//Reveal all active battle cards
+	with(obj_card) {
+		if (battle_card) {
+			sprite_index = spr_playing_cards;
+			image_index = face;
+		}
+	}
 	
 	alarm[1] = review_time;
 }
@@ -128,6 +140,13 @@ reveal_cards = function() {
 compare_cards = function() {
 	if (is_battle_time() == false) {
 		return;
+	}
+	
+	//Check for powers that change comparing
+	for(var _i = 0; _i < array_length(players); ++_i) {
+		if (players[_i].using_power == true) {
+			
+		}
 	}
 	
 	//Create the variable to hold the winner, whomever it is
@@ -155,24 +174,28 @@ compare_cards = function() {
 		//cards[1] = cards[1].owner.declare_war(war_level);
 		cards[0] = undefined;
 		cards[1] = undefined;
+		//Reset all battle status on cards
+		with(obj_card) {
+			battle_card = false;
+		}
 		exit;
 	}
 	
 	//If we've made it this far, we're not in a war and need to give the cards to the winner
-	with (cards[0]) {
+	with (obj_card) {
 		goal_x = _winner.discard_x;
 		goal_y = _winner.discard_y;
 		in_war = false;
 		in_discard = true;
 		owner = _winner;
 	}
-	with (cards[1]) {
+	/*with (cards[1]) {
 		goal_x = _winner.discard_x;
 		goal_y = _winner.discard_y;
 		in_war = false;
 		in_discard = true;
 		owner = _winner;
-	}
+	}*/
 	
 	//Cannot keep a reference to a destroyed instance in Rollback
 	cards[0] = undefined;
@@ -248,4 +271,8 @@ game_over = function() {
 
 #region Call any methods we need
 create_decks();
+#endregion
+
+#region Power Macros and Methods
+#macro DRAW_TWO 0
 #endregion

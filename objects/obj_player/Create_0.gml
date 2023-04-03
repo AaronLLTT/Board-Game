@@ -39,6 +39,14 @@ my_card = undefined;
 //Put our info in the general's data
 obj_game.init_player(id);
 
+//The powers we could have
+using_power = false;
+two_cards = false;
+
+instance_deactivate_object(id);
+
+//init_draw_two_power(id);
+
 shuffle_discard = function() {
 	//Haven't lost, proceed as normal
 	deck = array_shuffle(discard);
@@ -118,6 +126,7 @@ declare_war = function(offset) {
 		
 		_card.in_war = true;
 		_card.just_drawn = false;
+		_card.battle_card = false;
 			
 		++_war_x_offset;
 	}

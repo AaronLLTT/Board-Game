@@ -25,6 +25,6 @@ draw_text(x, bbox_bottom + 32, name);
 
 if (can_play == false) {
 	draw_set_color(c_green);
-	draw_text(x, bbox_bottom + 96, "Readied");
+	draw_text(x, bbox_top - 4, "Readied");
 	draw_set_color(c_white);
 }

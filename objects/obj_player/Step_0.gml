@@ -12,7 +12,13 @@ if (can_play && _input.space_pressed)
 	}
 	//Draw like regular
 	else {
-		draw_card();
+		//Check for power
+		if (using_power == false) {
+			draw_card();
+		}
+		else {
+			use_special_power();
+		}
 	}
 	
 	//For debugging
