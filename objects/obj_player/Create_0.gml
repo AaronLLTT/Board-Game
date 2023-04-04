@@ -40,12 +40,17 @@ my_card = undefined;
 obj_game.init_player(id);
 
 //The powers we could have
-using_power = false;
 two_cards = false;
 
-instance_deactivate_object(id);
+//Read any preferences
+var prefs = rollback_get_player_prefs(player_id);
+if (prefs.powers == 0) {
+	init_draw_two_power(id);
+}
 
-//init_draw_two_power(id);
+if (obj_game.game_local) {
+	instance_create_layer(0, 0, "Instances", obj_computer);
+}
 
 shuffle_discard = function() {
 	//Haven't lost, proceed as normal

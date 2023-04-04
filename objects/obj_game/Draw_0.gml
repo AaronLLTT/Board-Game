@@ -1,6 +1,6 @@
 /// @description Draw Instructions 
 
-if (rollback_game_running) {
+if (rollback_game_running && room == rm_war) {
 	draw_set_font(fntInstructions);
 	draw_set_halign(fa_center);
 	draw_set_valign(fa_middle);
@@ -18,6 +18,12 @@ if (rollback_game_running) {
 		draw_set_font(fntWar);
 		draw_text_color(room_width / 2, room_height - 125, "WAR TIME!!", c_red, c_blue, c_orange, c_teal, 1);
 	}
+}
+else if (rollback_game_running && room == rm_powers) {
+	draw_set_font(fntInstructions);
+	draw_set_halign(fa_center);
+	draw_set_valign(fa_middle);
+	draw_text(room_width / 2, room_height - 50, "Choose a power");
 }
 //We're waiting for other players to join, so put instructions on the screen
 else {

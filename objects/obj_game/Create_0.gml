@@ -3,6 +3,8 @@
 #region Multiplayer specific
 //Init multiplayer
 rollback_define_player(obj_player);
+//We'll be using preferences for the players to choose a character and power
+rollback_use_player_prefs()
 //If we're joining a game with a link, this will take us there immediately
 var _joined = rollback_join_game();
 //If joined is true, then we're in a live multiplayer game and ready to begin
@@ -43,12 +45,11 @@ create_game = function(_player_count) {
 	rollback_create_game(_player_count, false);
 	
 	if (_player_count == 1) {
-		instance_create_layer(-500, -500, "Instances", obj_computer);
+		//instance_create_layer(0, 0, "Instances", obj_player);
+		//instance_create_layer(-500, -500, "Instances", obj_computer);
 		//Set the game to local
 		game_local = true;
 	}
-	
-	instance_deactivate_all(true);
 }
 
 create_decks = function() {
@@ -258,6 +259,11 @@ game_over = function() {
 		else if (lost == false) {
 			audio_play_sound(snd_won_game, 100, false);
 		}
+		can_play = false;
+	}
+	
+	with(obj_computer) {
+		can_play = false;
 	}
 
 	//Mute current music

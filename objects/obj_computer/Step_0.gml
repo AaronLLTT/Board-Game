@@ -1,7 +1,7 @@
 /// @description Draw when Ready
 
 //If we can play a card, play it
-if (can_play == true) 
+if (can_play == true && obj_game.game_finished == false) 
 {
 	if (obj_game.war == true) {
 		declare_war(obj_game.war_level);

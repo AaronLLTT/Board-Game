@@ -1,11 +1,9 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "obj_power_select",
-  "eventList": [
-    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,},
-  ],
-  "managed": false,
+  "name": "obj_portrait_select",
+  "eventList": [],
+  "managed": true,
   "overriddenProperties": [],
   "parent": {
     "name": "Objects",
@@ -28,8 +26,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "spr_draw_two_power",
-    "path": "sprites/spr_draw_two_power/spr_draw_two_power.yy",
+    "name": "spr_players",
+    "path": "sprites/spr_players/spr_players.yy",
   },
   "spriteMaskId": null,
   "visible": true,

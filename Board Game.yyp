@@ -26,6 +26,7 @@
   "resources": [
     {"id":{"name":"spr_power_button","path":"sprites/spr_power_button/spr_power_button.yy",},},
     {"id":{"name":"fntWar","path":"fonts/fntWar/fntWar.yy",},},
+    {"id":{"name":"obj_portrait_select","path":"objects/obj_portrait_select/obj_portrait_select.yy",},},
     {"id":{"name":"snd_volcanic_theme","path":"sounds/snd_volcanic_theme/snd_volcanic_theme.yy",},},
     {"id":{"name":"spr_flameville_vec","path":"sprites/spr_flameville_vec/spr_flameville_vec.yy",},},
     {"id":{"name":"spr_players","path":"sprites/spr_players/spr_players.yy",},},
@@ -35,6 +36,7 @@
     {"id":{"name":"obj_power_select","path":"objects/obj_power_select/obj_power_select.yy",},},
     {"id":{"name":"spr_empty_card_stack","path":"sprites/spr_empty_card_stack/spr_empty_card_stack.yy",},},
     {"id":{"name":"obj_card","path":"objects/obj_card/obj_card.yy",},},
+    {"id":{"name":"fnt_powers","path":"fonts/fnt_powers/fnt_powers.yy",},},
     {"id":{"name":"rm_start","path":"rooms/rm_start/rm_start.yy",},},
     {"id":{"name":"snd_won_game","path":"sounds/snd_won_game/snd_won_game.yy",},},
     {"id":{"name":"snd_play_card","path":"sounds/snd_play_card/snd_play_card.yy",},},

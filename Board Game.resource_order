@@ -8,6 +8,7 @@
   "ResourceOrderSettings": [
     {"name":"spr_power_button","order":6,"path":"sprites/spr_power_button/spr_power_button.yy",},
     {"name":"fntWar","order":1,"path":"fonts/fntWar/fntWar.yy",},
+    {"name":"obj_portrait_select","order":11,"path":"objects/obj_portrait_select/obj_portrait_select.yy",},
     {"name":"snd_volcanic_theme","order":2,"path":"sounds/snd_volcanic_theme/snd_volcanic_theme.yy",},
     {"name":"spr_flameville_vec","order":2,"path":"sprites/spr_flameville_vec/spr_flameville_vec.yy",},
     {"name":"snd_war_time","order":16,"path":"sounds/snd_war_time/snd_war_time.yy",},
@@ -15,6 +16,7 @@
     {"name":"spr_playing_cards","order":5,"path":"sprites/spr_playing_cards/spr_playing_cards.yy",},
     {"name":"obj_power_select","order":10,"path":"objects/obj_power_select/obj_power_select.yy",},
     {"name":"spr_empty_card_stack","order":1,"path":"sprites/spr_empty_card_stack/spr_empty_card_stack.yy",},
+    {"name":"fnt_powers","order":4,"path":"fonts/fnt_powers/fnt_powers.yy",},
     {"name":"rm_start","order":1,"path":"rooms/rm_start/rm_start.yy",},
     {"name":"snd_won_game","order":4,"path":"sounds/snd_won_game/snd_won_game.yy",},
     {"name":"spr_card_back","order":4,"path":"sprites/spr_card_back/spr_card_back.yy",},
