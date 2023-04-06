@@ -47,6 +47,9 @@ var prefs = rollback_get_player_prefs(player_id);
 if (prefs.powers == 0) {
 	init_draw_two_power(id);
 }
+else if (prefs.powers == 1) {
+	init_more_war_power(id);
+}
 
 if (obj_game.game_local) {
 	instance_create_layer(0, 0, "Instances", obj_computer);
@@ -96,13 +99,8 @@ declare_war = function(offset) {
 	if (_deck_size == 0) {
 		exit;
 	}
-	//Adjust cards to draw based on remaining cards
-	else if (_deck_size >= 4) { //Enough cards for all of them
-		_cards_to_create = 3;
-	}
-
 	//We don't have enough for a full war, so adjust
-	else if (_deck_size <= 3) {
+	else if (_deck_size <= _cards_to_create) {
 		_cards_to_create = _deck_size - 1;
 	}
 	

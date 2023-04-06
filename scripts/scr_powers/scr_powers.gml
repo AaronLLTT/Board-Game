@@ -41,6 +41,73 @@ function init_draw_two_power(_player) {
 	});
 }
 
+function init_more_war_power(_player) {
+	with(_player) {
+		more_war = true;
+		using_power = true;
+		two_cards = false;
+	}
+	
+	declare_more_war = function(_offset) {
+		var _deck_size = array_length(deck);
+		var _reward_amount = 6;
+	
+		//If we're out of cards
+		if (_deck_size == 0) {
+			exit;
+		}
+		//We don't have enough for a full war, so adjust
+		else if (_deck_size <= _reward_amount) {
+			_reward_amount = _deck_size - 1;
+		}
+	
+		var _war_x_offset = 1;
+		
+		audio_play_sound(snd_play_card, 1, false);
+		//Draw the new battle card, too
+		var _battle_card = instance_create_layer(deck_x, deck_y, "War_Cards", obj_card, {
+			owner : id,
+			goal_x : id.play_x + (_offset * 30),
+			goal_y : id.play_y,
+		});
+		
+		_battle_card.value += 1;
+		//Sort based on depth
+		_battle_card.depth = -_battle_card.goal_x;
+	
+		obj_game.add_card(_battle_card);
+	
+		repeat (_reward_amount) {
+			var _card = instance_create_layer(deck_x, deck_y, "War_Cards", obj_card, {
+				owner : id,
+				goal_x : id.play_x + (_war_x_offset * 64) - 95,
+				goal_y : id.play_y + (_offset * 64),
+			});
+		
+			_card.in_war = true;
+			_card.just_drawn = false;
+			_card.battle_card = false;
+			
+			++_war_x_offset;
+			
+			//Move the cards down 1
+			if (_war_x_offset > 3) {
+				_war_x_offset = 1;
+				_offset += 1;
+			}
+		}
+	
+		can_play = false;
+	}
+	
+	instance_create_layer(_player.x, _player.bbox_bottom + 80, "Instances", obj_more_war_power, {
+		image_xscale : 0.15,
+		image_yscale : 0.15,
+	});
+	
+	obj_game.more_war = true;
+}
+
 function get_player_index(_player) {
 	var index = 0;
 	if (obj_game.players[index] == _player) {

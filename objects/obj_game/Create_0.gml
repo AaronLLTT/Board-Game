@@ -54,11 +54,12 @@ create_game = function(_player_count) {
 
 create_decks = function() {
 	//Create and save the decks to distribute later
-	//Create an empty array
-	var _full_deck = array_create(2);
-
+	
 	//Get the amount of cards we'll use in our deck
-	var _cards = 2;//sprite_get_number(spr_playing_cards);
+	var _cards = sprite_get_number(spr_playing_cards);
+	
+	//Create an empty array
+	var _full_deck = array_create(_cards);
 
 	//Fill up the deck array with numbers
 	for(var _i = 0; _i < _cards; ++_i) {
@@ -144,9 +145,17 @@ compare_cards = function() {
 	}
 	
 	//Check for powers that change comparing
-	for(var _i = 0; _i < array_length(players); ++_i) {
+	/*for(var _i = 0; _i < array_length(players); ++_i) {
 		if (players[_i].using_power == true) {
 			
+		}
+	}*/
+	
+	//Check for the war power
+	if (more_war) {
+		if (abs(cards[0].value - cards[1].value) <= 2) {
+			cards[0].value = 0;
+			cards[1].value = 0;
 		}
 	}
 	
@@ -281,4 +290,7 @@ create_decks();
 
 #region Power Macros and Methods
 #macro DRAW_TWO 0
+#macro MORE_WAR 1
+
+more_war = false;
 #endregion

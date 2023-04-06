@@ -7,16 +7,22 @@ var _input = rollback_get_input();
 if (can_play && _input.space_pressed) {
 	//Check for war 
 	if (obj_game.war == true) {
-		declare_war(obj_game.war_level);
+		//check for war power
+		if (more_war == true) {
+			declare_more_war(obj_game.war_level);
+		}
+		else {
+			declare_war(obj_game.war_level);
+		}
 	}
 	//Draw like regular
 	else {
 		//Check for power
-		if (using_power == false) {
-			draw_card();
+		if (two_cards == true) {
+			use_special_power();
 		}
 		else {
-			use_special_power();
+			draw_card();
 		}
 	}
 	
