@@ -56,7 +56,7 @@ create_decks = function() {
 	//Create and save the decks to distribute later
 	
 	//Get the amount of cards we'll use in our deck
-	var _cards = sprite_get_number(spr_playing_cards);
+	var _cards = 12;//sprite_get_number(spr_playing_cards);
 	
 	//Create an empty array
 	var _full_deck = array_create(_cards);

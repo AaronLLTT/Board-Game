@@ -1,11 +1,23 @@
+function init_powers() {
+	two_cards = false; //Set this power to what the player can use
+	draw_pool = undefined; //How many times they can still use this power
+	using_power = false;
+	more_war = false;
+}
+
 function init_draw_two_power(_player) {
 	//Set the variables and methods needed to run this power
 	with(_player) {
-		two_cards = true; //Set this power to what the player can use
-		draw_pool = 6; //How many times they can still use this power
-		using_power = false;
+		init_powers();
+		//Set these specific powers
+		two_cards = true;
+		draw_pool = 4;
 		
 		use_special_power = function() {
+			//Check we have enough cards in our deck
+			if (array_length(deck) <= 1) {
+				shuffle_discard();
+			}
 			audio_play_sound(snd_play_card, 1, false);
 	
 			var _card = instance_create_layer(deck_x, deck_y, "Battle_Cards", obj_card, {
@@ -35,6 +47,21 @@ function init_draw_two_power(_player) {
 			draw_pool -= 1;
 		}
 	}
+	
+	shuffle_discard = function() {
+		//Haven't lost, proceed as normal
+		deck = array_shuffle(discard);
+		discard = [];
+		
+		draw_pool += 2;
+	
+		//Destroy all cards in the discard pile
+		with(obj_card) {
+			if (owner == other.id) {
+				instance_destroy();
+			}
+		}
+	}
 	//Create the special power button
 	power_toggle = instance_create_layer(_player.x, _player.bbox_bottom + 80, "Instances", obj_draw_two_power, {
 		owner : _player,
@@ -43,17 +70,21 @@ function init_draw_two_power(_player) {
 
 function init_more_war_power(_player) {
 	with(_player) {
+		init_powers();
 		more_war = true;
-		using_power = true;
-		two_cards = false;
 	}
 	
 	declare_more_war = function(_offset) {
 		var _deck_size = array_length(deck);
 		var _reward_amount = 6;
+		
+		if (_deck_size <= 0) {
+			shuffle_discard();
+		}
 	
 		//If we're out of cards
 		if (_deck_size == 0) {
+			end_of_round();
 			exit;
 		}
 		//We don't have enough for a full war, so adjust

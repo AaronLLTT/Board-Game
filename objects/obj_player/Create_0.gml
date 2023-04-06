@@ -62,7 +62,7 @@ shuffle_discard = function() {
 	
 	//Destroy all cards in the discard pile
 	with(obj_card) {
-		if (owner == other.id) {
+		if (owner == other.id && in_discard) {
 			instance_destroy();
 		}
 	}
@@ -95,8 +95,15 @@ declare_war = function(offset) {
 	var _deck_size = array_length(deck);
 	var _cards_to_create = 3;
 	
+	//Check if we need to shuffle
+	if (_deck_size < _cards_to_create && array_length(discard) > 0) {
+		shuffle_discard();
+		_deck_size = array_length(deck);
+	}
+	
 	//If we're out of cards
 	if (_deck_size == 0) {
+		end_of_round();
 		exit;
 	}
 	//We don't have enough for a full war, so adjust

@@ -9,7 +9,7 @@ if (can_play == true && obj_game.game_finished == false)
 	else {
 		//Choose to use the power randomly
 		var _num = irandom(1);
-		if (draw_pool <= 0) {
+		if (draw_pool <= 0 || array_length(deck) + array_length(discard) <= 1) {
 			_num = 0;
 		}
 		if (_num == 0) {

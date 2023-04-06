@@ -12,6 +12,14 @@ for(var _i = 0; _i < array_length(players); ++_i) {
 	
 	//Reset the deck
 	players[_i].deck = decks[_i];
+	
+	//Get ready to play again
+	players[_i].can_play = true;
+	
+	//Reset draw power
+	if(players[_i].two_cards == true) {
+		players[_i].draw_pool = 4;
+	}
 }
 
 //Reset ending data
