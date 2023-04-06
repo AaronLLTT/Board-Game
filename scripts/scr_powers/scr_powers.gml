@@ -3,6 +3,7 @@ function init_powers() {
 	draw_pool = undefined; //How many times they can still use this power
 	using_power = false;
 	more_war = false;
+	power_toggle = undefined;
 }
 
 function init_draw_two_power(_player) {
@@ -13,10 +14,18 @@ function init_draw_two_power(_player) {
 		two_cards = true;
 		draw_pool = 4;
 		
-		use_special_power = function() {
+		draw_two_cards = function() {
 			//Check we have enough cards in our deck
 			if (array_length(deck) <= 1) {
 				shuffle_discard();
+				if (array_length(deck) == 0) {
+					end_of_round(); //Lost
+					exit;
+				}
+				else if (array_length(deck) == 1) {
+					power_toggle.image_index = 2;
+					draw_card();
+				}
 			}
 			audio_play_sound(snd_play_card, 1, false);
 	
@@ -46,26 +55,29 @@ function init_draw_two_power(_player) {
 			using_power = true;
 			draw_pool -= 1;
 		}
-	}
 	
-	shuffle_discard = function() {
-		//Haven't lost, proceed as normal
-		deck = array_shuffle(discard);
-		discard = [];
+		//Rewrite the shuffle discard function
+		shuffle_discard = function() {
+			//Haven't lost, proceed as normal
+			array_copy(deck, array_length(deck), discard, 0, array_length(discard));
+			deck = array_shuffle(deck);
+			discard = [];
 		
-		draw_pool += 2;
+			draw_pool += 2;
+			power_toggle.image_index = 0;
 	
-		//Destroy all cards in the discard pile
-		with(obj_card) {
-			if (owner == other.id) {
-				instance_destroy();
+			//Destroy all cards in the discard pile
+			with(obj_card) {
+				if (owner == other.id) {
+					instance_destroy();
+				}
 			}
 		}
+		//Create the special power button
+		power_toggle = instance_create_layer(_player.x, _player.bbox_bottom + 80, "Instances", obj_draw_two_power, {
+			owner : _player,
+		});
 	}
-	//Create the special power button
-	power_toggle = instance_create_layer(_player.x, _player.bbox_bottom + 80, "Instances", obj_draw_two_power, {
-		owner : _player,
-	});
 }
 
 function init_more_war_power(_player) {
@@ -78,7 +90,7 @@ function init_more_war_power(_player) {
 		var _deck_size = array_length(deck);
 		var _reward_amount = 6;
 		
-		if (_deck_size <= 0) {
+		if (_deck_size <= _reward_amount) {
 			shuffle_discard();
 		}
 	
@@ -107,6 +119,11 @@ function init_more_war_power(_player) {
 		_battle_card.depth = -_battle_card.goal_x;
 	
 		obj_game.add_card(_battle_card);
+		
+		//Check the offset - If it's greater than 1, we're in another war and need to adjust
+		if (_offset > 1) {
+			_offset = (_offset * 2) - 1;
+		}
 	
 		repeat (_reward_amount) {
 			var _card = instance_create_layer(deck_x, deck_y, "War_Cards", obj_card, {

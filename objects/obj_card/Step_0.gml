@@ -29,7 +29,7 @@ if (in_war) {
 #region In the discard state
 if (in_discard && _done_moving) {
 	//Add ourself to the discard
-	array_push(owner.discard, image_index);
+	array_push(owner.discard, face);
 	//Destroy ourselves
 	instance_destroy();
 	//Only activate this effect for the last of the cards heading to the discard

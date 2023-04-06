@@ -56,7 +56,7 @@ create_decks = function() {
 	//Create and save the decks to distribute later
 	
 	//Get the amount of cards we'll use in our deck
-	var _cards = 12;//sprite_get_number(spr_playing_cards);
+	var _cards = sprite_get_number(spr_playing_cards);
 	
 	//Create an empty array
 	var _full_deck = array_create(_cards);
@@ -218,6 +218,14 @@ check_war_status = function() {
 		return;
 	}
 	
+	//Check for the war power
+	if (more_war) {
+		if (abs(cards[0].value - cards[1].value) <= 2) {
+			cards[0].value = 0;
+			cards[1].value = 0;
+		}
+	}
+	
 	//Create the variable to hold the winner, whomever it is
 	var _winner = undefined;
 	
@@ -251,7 +259,10 @@ check_war_status = function() {
 	}
 	//Reset all the things that changed during the war
 	war = false;
-	war_level = 1;
+	with(obj_draw_two_power) {
+		image_index = 0;
+	}
+	war_level = 0;
 	cards[0] = undefined;
 	cards[1] = undefined;
 	audio_sound_gain(war_music, 0, 2000);

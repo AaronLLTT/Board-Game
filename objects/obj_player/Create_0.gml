@@ -39,25 +39,14 @@ my_card = undefined;
 //Put our info in the general's data
 obj_game.init_player(id);
 
-//The powers we could have
-two_cards = false;
-
-//Read any preferences
-var prefs = rollback_get_player_prefs(player_id);
-if (prefs.powers == 0) {
-	init_draw_two_power(id);
-}
-else if (prefs.powers == 1) {
-	init_more_war_power(id);
-}
-
 if (obj_game.game_local) {
 	instance_create_layer(0, 0, "Instances", obj_computer);
 }
 
 shuffle_discard = function() {
 	//Haven't lost, proceed as normal
-	deck = array_shuffle(discard);
+	array_copy(deck, array_length(deck), discard, 0, array_length(discard));
+	deck = array_shuffle(deck);
 	discard = [];
 	
 	//Destroy all cards in the discard pile
@@ -157,4 +146,13 @@ draw_card = function() {
 	my_card = _card;
 	
 	can_play = false;
+}
+
+//Read any preferences
+var prefs = rollback_get_player_prefs(player_id);
+if (prefs.powers == 0) {
+	init_draw_two_power(id);
+}
+else if (prefs.powers == 1) {
+	init_more_war_power(id);
 }

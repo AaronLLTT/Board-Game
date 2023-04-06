@@ -18,7 +18,7 @@ if (can_play == true && obj_game.game_finished == false)
 		}
 		else {
 			power_toggle.image_index = 1;
-			use_special_power();
+			draw_two_cards();
 		}
 	}
 }

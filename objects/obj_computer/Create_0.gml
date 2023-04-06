@@ -25,15 +25,13 @@ lost = undefined;
 debug = false;
 my_card = undefined;
 
-//Powers
-init_draw_two_power(id);
-
 //Put our info in the general's data
 obj_game.init_player(id);
 
 shuffle_discard = function() {
 	//Haven't lost, proceed as normal
-	deck = array_shuffle(discard);
+	array_copy(deck, array_length(deck), discard, 0, array_length(discard));
+	deck = array_shuffle(deck);
 	discard = [];
 	
 	//Destroy all cards in the discard pile
@@ -138,3 +136,6 @@ draw_card = function() {
 	
 	can_play = false;
 }
+
+//Powers
+init_draw_two_power(id);
