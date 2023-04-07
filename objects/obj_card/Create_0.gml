@@ -2,12 +2,14 @@
 
 //Determine image and value
 image_index = array_pop(owner.deck);
-value = image_index mod 13 + 2;
-face = image_index;
-image_xscale = 0.45;
-image_yscale = 0.45;
+card_value = image_index mod 13 + 2;
+card_face = image_index;
 
-//Don't show the card at draw
+card_scale = 0.45;
+image_xscale = card_scale;
+image_yscale = card_scale;
+
+//Don't show the front of the card when first drawn
 image_index = 0;
 sprite_index = spr_card_back;
 

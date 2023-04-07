@@ -42,7 +42,7 @@ function init_draw_two_power(_player) {
 				battle_card : true,
 			});
 			
-			_card.value += _card_2.value;
+			_card.card_value += _card_2.card_value;
 			
 			obj_game.add_card(_card);
 			my_card = _card;
@@ -50,7 +50,7 @@ function init_draw_two_power(_player) {
 			can_play = false;
 			
 			//Set we've used this power in the game object
-			obj_game.powers[get_player_index(id)] = DRAW_TWO;
+			//obj_game.powers[get_player_index(id)] = DRAW_TWO;
 			
 			using_power = true;
 			draw_pool -= 1;

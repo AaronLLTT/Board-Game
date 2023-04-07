@@ -4,7 +4,7 @@ y = 384;
 image_index = 1;
 image_xscale = -0.25;
 image_yscale = .25;
-name = "Bobby";
+name = "Computer";
 
 deck = [];
 discard = [];

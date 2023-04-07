@@ -18,14 +18,9 @@ if (room == rm_war) {
 	}
 
 	//Draw our name
-	draw_set_font(fntNames);
-	draw_set_halign(fa_center);
-	draw_set_valign(fa_middle);
-	draw_text(x, bbox_bottom + 32, name);
+	draw_text_below(name, fnt_names, 16, c_white);
 
 	if (can_play == false) {
-		draw_set_color(c_green);
-		draw_text(x, bbox_top - 4, "Readied");
-		draw_set_color(c_white);
+		draw_text_above("Ready!", fnt_names, 4, c_green);
 	}
 }

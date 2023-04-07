@@ -1,7 +1,7 @@
 {
   "resourceType": "GMFont",
   "resourceVersion": "1.0",
-  "name": "fntWar",
+  "name": "fnt_war",
   "AntiAlias": 1,
   "applyKerning": 0,
   "ascender": 124,

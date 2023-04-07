@@ -1,7 +1,7 @@
 /// @description Methods and Data
 
 #region Multiplayer specific
-//Init multiplayer
+//Define the player object
 rollback_define_player(obj_player);
 //We'll be using preferences for the players to choose a character and power
 rollback_use_player_prefs()
@@ -13,47 +13,46 @@ if (_joined) {
 }
 #endregion
 
-#region Variables for this object
-//Keep track of players
-players = [];
+#region Variables necessary to track data during the game
+//Keep track of the players and cards
+players = []; //The 2 active players
+cards = array_create(2, undefined); //The 2 active cards in battle
+
 //Keep track of the decks we will distribute in a 2D array
 decks[0][0] = [];
 decks[1][0] = [];
-//Track active powers
-powers = [];
 
-//Initialize the variables this object needs during the game
-cards = array_create(2, undefined); //The 2 active cards in battle
-can_draw = true; //If the player can draw a card
-war_level = 0; //The war level of the game, 0 means no war
+war_level = 0; //The war level of the game, 0 means no war. Used for position cards
+war = false; //If there's an active war
 
 review_time = 60; //How long to wait before moving the cards to the discard
-war = false; //If there's an active war
 
 music = audio_play_sound(snd_volcanic_theme, 1, true, 0.5); //The main theme music
 war_music = undefined; //Music specifically for the war
 
-game_finished = false;
 //Assume the game is online
 game_local = false;
 #endregion
 
 #region Methods
+//@description - Create the online game with Rollback
 create_game = function(_player_count) {
+	//Move to the room so they can choose their power
 	room_goto(rm_powers);
 	
+	//Create the online game
 	rollback_create_game(_player_count, false);
 	
 	if (_player_count == 1) {
-		//instance_create_layer(0, 0, "Instances", obj_player);
-		//instance_create_layer(-500, -500, "Instances", obj_computer);
 		//Set the game to local
 		game_local = true;
 	}
 }
 
 create_decks = function() {
-	//Create and save the decks to distribute later
+	//Reset the decks to blank
+	decks[0] = [];
+	decks[1] = [];
 	
 	//Get the amount of cards we'll use in our deck
 	var _cards = sprite_get_number(spr_playing_cards);
@@ -72,29 +71,18 @@ create_decks = function() {
 	//Save the decks to distribute later
 	array_copy(decks[0], 0, _full_deck, 0, array_length(_full_deck) / 2);
 	array_copy(decks[1], 0, _full_deck, array_length(_full_deck) / 2, array_length(_full_deck));
-	
-	//DEBUGGING ONLY
-	/*
-	with(players[0]) {
-		deck[array_length(deck) - 1] = 17;
-		deck[array_length(deck) - 2] = 45;
-	}
-	with(players[1]) {
-		deck[array_length(deck) - 1] = 17;
-		deck[array_length(deck) - 2] = 45;
-	} */
 }
 
-init_player = function(_id) {
+init_player = function(_player) {
 	//Add the newly created player to our data
 	var _count = array_length(players);
-	players[_count] = _id;
+	players[_count] = _player;
 	
 	//Give the player a deck
-	_id.deck = decks[_count];
+	_player.deck = decks[_count];
 }
 
-is_battle_time = function() {
+can_battle = function() {
 	if (cards[0] == undefined || cards[1] == undefined) {
 		return false;
 	}
@@ -117,21 +105,15 @@ add_card = function(_card) {
 }
 
 reveal_cards = function() {
-	if (is_battle_time() == false) {
+	if (can_battle() == false) {
 		return;
 	}
-	
-	//Reveal the cards
-	/*cards[0].sprite_index = spr_playing_cards;
-	cards[0].image_index = cards[0].face;
-	cards[1].sprite_index = spr_playing_cards;
-	cards[1].image_index = cards[1].face;*/
 	
 	//Reveal all active battle cards
 	with(obj_card) {
 		if (battle_card) {
 			sprite_index = spr_playing_cards;
-			image_index = face;
+			image_index = card_face;
 		}
 	}
 	
@@ -140,38 +122,37 @@ reveal_cards = function() {
 
 //The function to compare the player and computer cards and determine a winner
 compare_cards = function() {
-	if (is_battle_time() == false) {
+	//If it's not time to compare the cards, yeet out of this function
+	if (can_battle() == false) {
 		return;
 	}
 	
-	//Check for powers that change comparing
-	/*for(var _i = 0; _i < array_length(players); ++_i) {
-		if (players[_i].using_power == true) {
-			
-		}
-	}*/
+	//Get the values of the cards and save them temporarily
+	var _val_1 = cards[0].card_value;
+	var _val_2 = cards[1].card_value;
 	
 	//Check for the war power
 	if (more_war) {
-		if (abs(cards[0].value - cards[1].value) <= 2) {
-			cards[0].value = 0;
-			cards[1].value = 0;
+		if (abs(_val_1 - _val_2) <= war_tolerance) {
+			_val_1 = 0;
+			_val_2 = 0;
 		}
 	}
 	
 	//Create the variable to hold the winner, whomever it is
 	var _winner = undefined;
 	
-	//The player wins!
-	if (cards[0].value > cards[1].value) {
+	//The first card wins
+	if (_val_1 > _val_2) {
 		_winner = cards[0].owner;
 	}
-	//Player loses!
-	else if (cards[0].value < cards[1].value) {
+	//The second card wins
+	else if (_val_1 < _val_2) {
 		_winner = cards[1].owner
 	}
 	//They tie - WAR TIME!
 	else {
+		//Fade old music out and new music in
 		audio_sound_gain(music, 0, 2000);
 		war_music = audio_play_sound(snd_war_time, 1, true, 0.5);
 		can_draw = true;
@@ -180,14 +161,10 @@ compare_cards = function() {
 		++war_level;
 		players[0].can_play = true;
 		players[1].can_play = true
-		//cards[0] = cards[0].owner.declare_war(war_level);
-		//cards[1] = cards[1].owner.declare_war(war_level);
 		cards[0] = undefined;
 		cards[1] = undefined;
 		//Reset all battle status on cards
-		with(obj_card) {
-			battle_card = false;
-		}
+		obj_card.battle_card = false;
 		exit;
 	}
 	
@@ -199,13 +176,6 @@ compare_cards = function() {
 		in_discard = true;
 		owner = _winner;
 	}
-	/*with (cards[1]) {
-		goal_x = _winner.discard_x;
-		goal_y = _winner.discard_y;
-		in_war = false;
-		in_discard = true;
-		owner = _winner;
-	}*/
 	
 	//Cannot keep a reference to a destroyed instance in Rollback
 	cards[0] = undefined;
@@ -214,7 +184,7 @@ compare_cards = function() {
 
 //Check if the war is over
 check_war_status = function() {
-	if (is_battle_time() == false) {
+	if (can_battle() == false) {
 		return;
 	}
 	
@@ -240,7 +210,7 @@ check_war_status = function() {
 	//Another war
 	else {
 		++war_level;
-		can_draw = true;
+		//can_draw = true;
 		players[0].can_play = true;
 		players[1].can_play = true
 		cards[0] = undefined;
@@ -270,7 +240,7 @@ check_war_status = function() {
 }
 
 //@Function game_over - Called when any player has 0 cards in their deck and discard
-//Loops through each player and plays the appropriate music and sets the game_finished variable to true
+//Loops through each player and plays the appropriate music
 game_over = function() {
 	with(obj_player) {
 		if (lost == true) {
@@ -290,8 +260,6 @@ game_over = function() {
 	audio_sound_gain(music, 0, 1000);
 	//Set the alarm to trigger to restart the game
 	alarm[2] = audio_sound_length(snd_won_game) * 60;
-	//Set to true for any game logic that depends on it
-	game_finished = true;
 }
 #endregion
 
@@ -304,4 +272,5 @@ create_decks();
 #macro MORE_WAR 1
 
 more_war = false;
+war_tolerance = 2;
 #endregion
