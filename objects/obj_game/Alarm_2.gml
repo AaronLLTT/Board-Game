@@ -25,3 +25,6 @@ for(var _i = 0; _i < array_length(players); ++_i) {
 
 audio_stop_all();
 music = audio_play_sound(snd_volcanic_theme, 1, true);
+war = false;
+war_level = 0;
+instance_destroy(obj_card);

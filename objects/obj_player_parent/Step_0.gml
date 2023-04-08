@@ -25,20 +25,15 @@ if (can_play && _input.space_pressed) {
 			draw_card();
 		}
 	}
-	
-	//For debugging
-	if (_input.up_pressed) {
-		debug = !debug;
-	}
 }
 
+//Control the draw two power toggle
 if (_input.up_pressed && power_toggle != undefined) {
 	if (power_toggle.image_index == 0) {
 		++power_toggle.image_index;
 		using_power = true;
 		//Check there's enough cards left
 		if (array_length(deck) <= 1) {
-			//array_copy(owner.deck, 1, owner.discard, 0, array_length(owner.discard));
 			shuffle_discard();
 			if (array_length(deck) <= 1) {
 				using_power = false;

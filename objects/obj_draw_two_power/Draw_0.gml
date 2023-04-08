@@ -1,13 +1,11 @@
-/// @description 
+/// @description Draw Instructions
 
-if (array_length(owner.deck) + array_length(owner.discard) > 1) {
-	draw_self();
-	draw_set_font(fnt_powers);
-	draw_text(x, y + 64, "Power Remaining: " + string(owner.draw_pool));
-	draw_text(x, y + 96, "Press Up to activate");
+draw_self();
+
+if (image_index != 2) {
+	draw_text_below("Power Remaining: " + string(owner.draw_pool) + "\n Press up to Activate", 
+	fnt_powers, 40, c_white);
 }
 else {
-	draw_self();
-	draw_set_font(fnt_powers);
-	draw_text(x, y + 64, "Not enough cards.");
+	draw_text_below("Unable to use power.", fnt_powers, 40, c_white);
 }

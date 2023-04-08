@@ -1,9 +1,10 @@
 function init_powers() {
+	//Set the variables the player needs to have and their default values
 	two_cards = false; //Set this power to what the player can use
 	draw_pool = undefined; //How many times they can still use this power
-	using_power = false;
-	more_war = false;
-	power_toggle = undefined;
+	using_power = false; //If they're actively using the power
+	more_war = false; //If the power is activated
+	power_toggle = undefined; //The switch for drawing 2 cards
 }
 
 function init_draw_two_power(_player) {
@@ -45,7 +46,6 @@ function init_draw_two_power(_player) {
 			_card.card_value += _card_2.card_value;
 			
 			obj_game.add_card(_card);
-			my_card = _card;
 	
 			can_play = false;
 			
@@ -92,6 +92,7 @@ function init_more_war_power(_player) {
 		
 		if (_deck_size <= _reward_amount) {
 			shuffle_discard();
+			_deck_size = array_length(deck);
 		}
 	
 		//If we're out of cards
@@ -114,7 +115,8 @@ function init_more_war_power(_player) {
 			goal_y : id.play_y,
 		});
 		
-		_battle_card.value += 1;
+		_battle_card.card_value += 2;
+		_battle_card.boosted = true;
 		//Sort based on depth
 		_battle_card.depth = -_battle_card.goal_x;
 	

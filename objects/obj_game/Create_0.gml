@@ -40,13 +40,13 @@ create_game = function(_player_count) {
 	//Move to the room so they can choose their power
 	room_goto(rm_powers);
 	
-	//Create the online game
-	rollback_create_game(_player_count, false);
-	
+	//Set the game to local
 	if (_player_count == 1) {
-		//Set the game to local
 		game_local = true;
 	}
+	
+	//Create the online game
+	rollback_create_game(_player_count, false);
 }
 
 create_decks = function() {
@@ -55,7 +55,7 @@ create_decks = function() {
 	decks[1] = [];
 	
 	//Get the amount of cards we'll use in our deck
-	var _cards = sprite_get_number(spr_playing_cards);
+	var _cards = 16;//sprite_get_number(spr_playing_cards);
 	
 	//Create an empty array
 	var _full_deck = array_create(_cards);
@@ -190,9 +190,9 @@ check_war_status = function() {
 	
 	//Check for the war power
 	if (more_war) {
-		if (abs(cards[0].value - cards[1].value) <= 2) {
-			cards[0].value = 0;
-			cards[1].value = 0;
+		if (abs(cards[0].card_value - cards[1].card_value) <= 2) {
+			cards[0].card_value = 0;
+			cards[1].card_value = 0;
 		}
 	}
 	
@@ -200,11 +200,11 @@ check_war_status = function() {
 	var _winner = undefined;
 	
 	//The player wins!
-	if (cards[0].value > cards[1].value) {
+	if (cards[0].card_value > cards[1].card_value) {
 		_winner = cards[0].owner;
 	}
 	//Player loses!
-	else if (cards[0].value < cards[1].value) {
+	else if (cards[0].card_value < cards[1].card_value) {
 		_winner = cards[1].owner;
 	}
 	//Another war
@@ -231,6 +231,10 @@ check_war_status = function() {
 	war = false;
 	with(obj_draw_two_power) {
 		image_index = 0;
+	}
+	//Remove the boosted attribute so it stops drawing its text
+	with(obj_card) {
+		boosted = false;
 	}
 	war_level = 0;
 	cards[0] = undefined;
