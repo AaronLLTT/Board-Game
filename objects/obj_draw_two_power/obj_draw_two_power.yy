@@ -5,6 +5,7 @@
   "eventList": [
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,},
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,},
   ],
   "managed": true,
   "overriddenProperties": [],
@@ -31,8 +32,8 @@
   ],
   "solid": false,
   "spriteId": {
-    "name": "spr_power_button",
-    "path": "sprites/spr_power_button/spr_power_button.yy",
+    "name": "spr_draw_two_power",
+    "path": "sprites/spr_draw_two_power/spr_draw_two_power.yy",
   },
   "spriteMaskId": null,
   "visible": true,

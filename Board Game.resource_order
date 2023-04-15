@@ -9,7 +9,6 @@
   "ResourceOrderSettings": [
     {"name":"spr_power_button","order":6,"path":"sprites/spr_power_button/spr_power_button.yy",},
     {"name":"fnt_war","order":1,"path":"fonts/fnt_war/fnt_war.yy",},
-    {"name":"obj_portrait_select","order":11,"path":"objects/obj_portrait_select/obj_portrait_select.yy",},
     {"name":"snd_volcanic_theme","order":2,"path":"sounds/snd_volcanic_theme/snd_volcanic_theme.yy",},
     {"name":"spr_flameville_vec","order":2,"path":"sprites/spr_flameville_vec/spr_flameville_vec.yy",},
     {"name":"scr_helpers","order":1,"path":"scripts/scr_helpers/scr_helpers.yy",},

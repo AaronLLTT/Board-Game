@@ -1,6 +1,7 @@
-/// @description 
+/// @description Move Between Rooms
 
 //Choosing a power
+/*
 if (room == rm_powers && instance_exists(obj_select_draw_two)) {
 	if (keyboard_check_pressed(ord("A"))) {
 		//init_draw_two_power(id);
@@ -22,23 +23,6 @@ if (room == rm_powers && instance_exists(obj_select_draw_two)) {
 		var prefs = 
 		{
 			powers : MORE_WAR
-		}
-		
-		rollback_set_player_prefs(prefs);
-		rollback_start_game();
-	}
-}
-else if (room == rm_powers && instance_exists(obj_portrait_select)) {
-	if (keyboard_check_pressed(vk_right)) {
-		obj_portrait_select.image_index += 1;
-	}
-	else if (keyboard_check_pressed(vk_left)) {
-		obj_portrait_select.image_index -= 1;
-	}
-	else if (keyboard_check_pressed(vk_enter)) {
-		var prefs = 
-		{
-			portrait : obj_portrait_select.image_index
 		}
 		
 		rollback_set_player_prefs(prefs);

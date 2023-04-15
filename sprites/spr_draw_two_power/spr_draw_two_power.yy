@@ -13,7 +13,9 @@
   "edgeFiltering": false,
   "For3D": false,
   "frames": [
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"45a8e73a-6a99-4f3f-8a55-c8196f2c756a",},
     {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"e4b8c109-a94f-4476-a471-88144119d255",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"f59b6192-8447-4972-8c26-a82701138fb0",},
   ],
   "gridX": 0,
   "gridY": 0,
@@ -43,7 +45,7 @@
     "events": {"resourceType":"KeyframeStore<MessageEventKeyframe>","resourceVersion":"1.0","Keyframes":[],},
     "eventStubScript": null,
     "eventToFunction": {},
-    "length": 1.0,
+    "length": 3.0,
     "lockOrigin": false,
     "moments": {"resourceType":"KeyframeStore<MomentsEventKeyframe>","resourceVersion":"1.0","Keyframes":[],},
     "playback": 1,
@@ -54,7 +56,9 @@
     "timeUnits": 1,
     "tracks": [
       {"resourceType":"GMSpriteFramesTrack","resourceVersion":"1.0","name":"frames","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"1.0","Keyframes":[
-            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"e4b8c109-a94f-4476-a471-88144119d255","path":"sprites/spr_draw_two_power/spr_draw_two_power.yy",},},},"Disabled":false,"id":"289ee15a-5e2f-4d10-b71e-797e956fccf3","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
+            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"45a8e73a-6a99-4f3f-8a55-c8196f2c756a","path":"sprites/spr_draw_two_power/spr_draw_two_power.yy",},},},"Disabled":false,"id":"7ce6cd9f-9fab-4293-b133-c003b57a1bf4","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
+            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"e4b8c109-a94f-4476-a471-88144119d255","path":"sprites/spr_draw_two_power/spr_draw_two_power.yy",},},},"Disabled":false,"id":"289ee15a-5e2f-4d10-b71e-797e956fccf3","IsCreationKey":false,"Key":1.0,"Length":1.0,"Stretch":false,},
+            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"f59b6192-8447-4972-8c26-a82701138fb0","path":"sprites/spr_draw_two_power/spr_draw_two_power.yy",},},},"Disabled":false,"id":"0e4791bb-eab6-458b-94dd-92a1f7b8de89","IsCreationKey":false,"Key":2.0,"Length":1.0,"Stretch":false,},
           ],},"modifiers":[],"spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange": null,

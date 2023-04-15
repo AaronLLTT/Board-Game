@@ -22,12 +22,11 @@
   "isEcma": false,
   "LibraryEmitters": [],
   "MetaData": {
-    "IDEVersion": "2023.200.0.299",
+    "IDEVersion": "2023.400.0.317",
   },
   "resources": [
     {"id":{"name":"spr_power_button","path":"sprites/spr_power_button/spr_power_button.yy",},},
     {"id":{"name":"fnt_war","path":"fonts/fnt_war/fnt_war.yy",},},
-    {"id":{"name":"obj_portrait_select","path":"objects/obj_portrait_select/obj_portrait_select.yy",},},
     {"id":{"name":"snd_volcanic_theme","path":"sounds/snd_volcanic_theme/snd_volcanic_theme.yy",},},
     {"id":{"name":"spr_flameville_vec","path":"sprites/spr_flameville_vec/spr_flameville_vec.yy",},},
     {"id":{"name":"scr_helpers","path":"scripts/scr_helpers/scr_helpers.yy",},},

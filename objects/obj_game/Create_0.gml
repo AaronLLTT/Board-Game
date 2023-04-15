@@ -82,6 +82,19 @@ init_player = function(_player) {
 	_player.deck = decks[_count];
 }
 
+set_power = function(_power) {
+
+		var prefs = 
+		{
+			powers : _power
+		}
+		
+		rollback_set_player_prefs(prefs);
+		rollback_start_game();
+		
+		room_goto(rm_war); //This is causing another player to be created
+}
+
 can_battle = function() {
 	if (cards[0] == undefined || cards[1] == undefined) {
 		return false;
@@ -117,7 +130,7 @@ reveal_cards = function() {
 		}
 	}
 	
-	alarm[1] = review_time;
+	alarm[0] = review_time;
 }
 
 //The function to compare the player and computer cards and determine a winner
@@ -263,7 +276,7 @@ game_over = function() {
 	//Mute current music
 	audio_sound_gain(music, 0, 1000);
 	//Set the alarm to trigger to restart the game
-	alarm[2] = audio_sound_length(snd_won_game) * 60;
+	alarm[1] = audio_sound_length(snd_won_game) * 60;
 }
 #endregion
 
