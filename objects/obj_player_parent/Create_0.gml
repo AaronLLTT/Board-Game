@@ -25,14 +25,6 @@ shuffle_discard = function() {
 	array_copy(deck, array_length(deck), discard, 0, array_length(discard));
 	deck = array_shuffle(deck);
 	discard = [];
-	
-	//Destroy all cards in the discard pile
-	//This might be redundant
-	/*with(obj_card) {
-		if (owner == other.id && in_discard) {
-			instance_destroy();
-		}
-	}*/
 }
 
 end_of_round = function() {

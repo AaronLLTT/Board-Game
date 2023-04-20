@@ -18,7 +18,7 @@ else if (player_id == 1) {
 event_inherited();
 
 //Read and set any preferences
-var prefs = rollback_get_player_prefs(player_id);
+var prefs = rollback_get_player_prefs();
 
 if (prefs.powers == 0) {
 	init_draw_two_power(id);

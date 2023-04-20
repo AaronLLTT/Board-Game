@@ -19,8 +19,9 @@ if (room == rm_war) {
 	}
 
 	//Draw our name
-	draw_text_below(player_name, fnt_names, 16, c_white);
-
+	draw_text_below(player_name, fnt_names, 32, c_white);
+	
+	//Draw the instructions for how to play
 	if (can_play == false) {
 		draw_text_above("Ready!", fnt_instructions, 4, c_green);
 	}

@@ -1,5 +1,4 @@
 /// @description Methods and Data
-
 #region Multiplayer specific
 //Define the player object
 rollback_define_player(obj_player);
@@ -55,7 +54,7 @@ create_decks = function() {
 	decks[1] = [];
 	
 	//Get the amount of cards we'll use in our deck
-	var _cards = 16;//sprite_get_number(spr_playing_cards);
+	var _cards = sprite_get_number(spr_playing_cards);
 	
 	//Create an empty array
 	var _full_deck = array_create(_cards);
@@ -90,9 +89,12 @@ set_power = function(_power) {
 		}
 		
 		rollback_set_player_prefs(prefs);
-		rollback_start_game();
 		
-		room_goto(rm_war); //This is causing another player to be created
+		room_goto(rm_war);
+		
+		if (game_local) {
+			rollback_start_game();
+		}
 }
 
 can_battle = function() {

@@ -15,6 +15,6 @@ else if (rollback_game_running && room == rm_powers) {
 //We're waiting for other players to join, so put instructions on the screen
 else {
 	if (room == rm_war) {
-		draw_text_center("Copy the URL and share it with a friend to begin playing", fnt_instructions, -150, c_white);
+		draw_text_center("Copy the URL and share it with a friend to begin playing", fnt_instructions, 100, c_white);
 	}
 }
