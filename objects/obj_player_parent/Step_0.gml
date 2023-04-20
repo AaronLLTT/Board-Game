@@ -29,8 +29,8 @@ if (can_play && _input.space_pressed) {
 
 //Control the draw two power toggle
 if (_input.up_pressed && power_toggle != undefined) {
-	if (power_toggle.image_index == 0) {
-		++power_toggle.image_index;
+	if (power_toggle.image_index == 1) {
+		--power_toggle.image_index;
 		using_power = true;
 		//Check there's enough cards left
 		if (array_length(deck) <= 1) {
@@ -41,8 +41,8 @@ if (_input.up_pressed && power_toggle != undefined) {
 			}
 		}
 	}
-	else if (power_toggle.image_index == 1) {
-		--power_toggle.image_index;
+	else if (power_toggle.image_index == 0) {
+		++power_toggle.image_index;
 		using_power = false;
 	}	
 }

@@ -245,7 +245,7 @@ check_war_status = function() {
 	//Reset all the things that changed during the war
 	war = false;
 	with(obj_draw_two_power) {
-		image_index = 0;
+		image_index = 1;
 	}
 	//Remove the boosted attribute so it stops drawing its text
 	with(obj_card) {

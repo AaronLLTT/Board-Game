@@ -6,7 +6,7 @@ if (image_index == 1) {
 	draw_text_below("Power Remaining: " + string(owner.draw_pool) + "\n Press up to Activate", 
 	fnt_powers, 40, c_white);
 }
-else if (image_index == 2) {
+else if (image_index == 0) {
 	draw_text_below("Power Remaining: " + string(owner.draw_pool), fnt_powers, 40, c_white);
 }
 else {

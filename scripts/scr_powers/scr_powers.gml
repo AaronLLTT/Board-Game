@@ -49,9 +49,6 @@ function init_draw_two_power(_player) {
 	
 			can_play = false;
 			
-			//Set we've used this power in the game object
-			//obj_game.powers[get_player_index(id)] = DRAW_TWO;
-			
 			using_power = true;
 			draw_pool -= 1;
 		}
@@ -74,7 +71,7 @@ function init_draw_two_power(_player) {
 			}
 		}
 		//Create the special power button
-		power_toggle = instance_create_layer(_player.x, _player.bbox_bottom + 80, "Instances", obj_draw_two_power, {
+		power_toggle = instance_create_layer(_player.x, _player.bbox_bottom + 120, "Instances", obj_draw_two_power, {
 			owner : _player,
 		});
 	}
@@ -150,9 +147,9 @@ function init_more_war_power(_player) {
 		can_play = false;
 	}
 	
-	instance_create_layer(_player.x, _player.bbox_bottom + 80, "Instances", obj_more_war_power, {
-		image_xscale : 0.15,
-		image_yscale : 0.15,
+	instance_create_layer(_player.x, _player.bbox_bottom + 120, "Instances", obj_more_war_power, {
+		image_xscale : 0.25,
+		image_yscale : 0.25,
 	});
 	
 	obj_game.more_war = true;
