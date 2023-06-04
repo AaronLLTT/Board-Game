@@ -2,12 +2,12 @@
   "FolderOrderSettings": [
     {"name":"Fonts","order":6,"path":"folders/Fonts.yy",},
     {"name":"Objects","order":16,"path":"folders/Objects.yy",},
+    {"name":"Player","order":16,"path":"folders/Objects/Player.yy",},
+    {"name":"Powers","order":15,"path":"folders/Objects/Powers.yy",},
+    {"name":"The Game","order":17,"path":"folders/Objects/The Game.yy",},
     {"name":"Rooms","order":9,"path":"folders/Rooms.yy",},
     {"name":"Scripts","order":18,"path":"folders/Scripts.yy",},
     {"name":"Sounds","order":2,"path":"folders/Sounds.yy",},
-    {"name":"Powers","order":15,"path":"folders/Objects/Powers.yy",},
-    {"name":"Player","order":16,"path":"folders/Objects/Player.yy",},
-    {"name":"The Game","order":17,"path":"folders/Objects/The Game.yy",},
   ],
   "ResourceOrderSettings": [
     {"name":"spr_power_button","order":6,"path":"sprites/spr_power_button/spr_power_button.yy",},

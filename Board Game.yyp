@@ -13,19 +13,19 @@
   "Folders": [
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Fonts","folderPath":"folders/Fonts.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Objects","folderPath":"folders/Objects.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Player","folderPath":"folders/Objects/Player.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Powers","folderPath":"folders/Objects/Powers.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"The Game","folderPath":"folders/Objects/The Game.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Rooms","folderPath":"folders/Rooms.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Scripts","folderPath":"folders/Scripts.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Sounds","folderPath":"folders/Sounds.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Sprites","folderPath":"folders/Sprites.yy",},
-    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Powers","folderPath":"folders/Objects/Powers.yy",},
-    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Player","folderPath":"folders/Objects/Player.yy",},
-    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"The Game","folderPath":"folders/Objects/The Game.yy",},
   ],
   "IncludedFiles": [],
   "isEcma": false,
   "LibraryEmitters": [],
   "MetaData": {
-    "IDEVersion": "2023.400.0.321",
+    "IDEVersion": "2023.4.0.84",
   },
   "resources": [
     {"id":{"name":"spr_power_button","path":"sprites/spr_power_button/spr_power_button.yy",},},
