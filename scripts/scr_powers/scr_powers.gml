@@ -60,7 +60,7 @@ function init_draw_two_power(_player) {
 			deck = array_shuffle(deck);
 			discard = [];
 		
-			draw_pool += 1;
+			draw_pool += 2;
 			power_toggle.image_index = 0;
 	
 			//Destroy all cards in the discard pile
